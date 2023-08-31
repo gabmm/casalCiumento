@@ -30,9 +30,9 @@ int main() {
 
     while (!scenario.isEveryoneSafe())
     {
-        cout << "Selecione uma pessoa para remar (m/f + 1/2/3): ";
+        cout << "Selecione uma pessoa para remar (m/f + 1/2/3)[EXEMPLO: m1]: ";
         cin >> pessoa1;
-        cout << "Selecine uma pessoa para acompanhar ('m/f + 1/2/3' ou 'x' para sem acompanhante): ";
+        cout << "Selecine uma pessoa para acompanhar ('m/f + 1/2/3' ou 'x' para sem acompanhante)EXEMPLO x: ";
         cin >> pessoa2;
         cout << endl;
 

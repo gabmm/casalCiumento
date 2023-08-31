@@ -142,6 +142,8 @@ void Scenario::printCheck() {
 }
 
 bool Scenario::isEveryoneSafe(){
+    // Testa se todas as pessoas estão na margem SAFE
+
     if (this->f1->isSafe() && this->f2->isSafe() && this->f3->isSafe() &&
             this->m1->isSafe() && this->m2->isSafe() && this->m3->isSafe())
         return true;
@@ -150,6 +152,8 @@ bool Scenario::isEveryoneSafe(){
 }
 
 bool Scenario::isThereOtherMale(Person *wife, bool margin, Person *guest) {
+    // Testa se existem homens que não são maridos da [wife] na [margin]
+
     if (!this->m1->isMarriedTo(wife) && this->m1->isSafe() == margin && this->m1 != guest){
         return true;
     }
@@ -166,6 +170,8 @@ bool Scenario::isThereOtherMale(Person *wife, bool margin, Person *guest) {
 }
 
 bool Scenario::isThereWifeNoHusband(Person *husband, bool margin, Person *guest) {
+    // Testa se existem mulheres que não são esposas do [husband] na [margin] e que estão sem seus maridos
+
     if (!this->f1->isMarriedTo(husband) && this->f1->isSafe() == margin && this->f1->getMarriedTo()->isSafe() != margin && !this->f1->isMarriedTo(guest)){
         return true;
     }
@@ -184,8 +190,8 @@ bool Scenario::isThereWifeNoHusband(Person *husband, bool margin, Person *guest)
 bool Scenario::isAllowed(Person *p, Person *guest) {
 
     bool desiredMargin = !p->isSafe();
-    // Se [a pessoa é mulher], [seu marido não está na outra margem ou no barco] e [há outros homens na outra margem]
-    // então nao pode atravessar
+    // Se [a pessoa é mulher] e [há outros homens na outra margem] e [seu marido não está no barco junto com a pessoa] e
+    //[seu marido não está na outra margem], então nao pode atravessar
     if (!p->isMale()) {
         if (this->isThereOtherMale(p, desiredMargin, guest) &&
             !p->isMarriedTo(guest) && p->getMarriedTo()->isSafe() != desiredMargin) {
@@ -195,8 +201,8 @@ bool Scenario::isAllowed(Person *p, Person *guest) {
             return false;
         }
     }
-    // Se [pessoa 1 é homem], [a travessia vai separá-lo de sua esposa], [há homens na margem em que ficou sua esposa]
-    // e [há esposas sem seus maridos], então não pode atravessar
+    // Se [pessoa 1 é homem] e [sua esposa não está na outra margem] e [há homens na margem em que está sua esposa]
+    // e [há esposas sem seus maridos na outra margem], então não pode atravessar
     else {
         if (p->getMarriedTo()->isSafe() != desiredMargin &&
             isThereOtherMale(p->getMarriedTo(), p->getMarriedTo()->isSafe(), guest) && !p->isMarriedTo(guest)){
