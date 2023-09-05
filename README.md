@@ -1,28 +1,52 @@
 # Problema Casal Ciumento
-Disciplina Inteligência Artificial
-Semestre 2023/3
-UFJF - Faculdade de Ciência da Computação
+**Disciplina Inteligência Artificial**
 
-Problema: 
+**Semestre 2023/3**
+
+**UFJF - Faculdade de Ciência da Computação**
+
+
+
+## Problema: 
 
 Três casais ficaram ilhados em um hotel quando passavam férias.
 Há um barco que pode levar duas pessoas por viagem para uma margem segura.
 Entretanto, os maridos são ciumentos e não permitem que suas esposas fiquem sozinhas na presença de outros homens sem que eles próprios estejam presentes.
 Deve-se encontrar uma forma de atravessar as seis pessoas em segurança sem que os maridos fiquem zangados.
 
-Funcionamento do código: 
-Estrutura de classes:
+## Funcionamento do código:
 
-PERSON - Classe que representa as pessoas no problema
-string name - nome da pessoa, para o problema pode ser m1, m2, m3, f1, f2 ou f3. Sendo f representando female e m, male. 1, 2 e 3 representando cada casal.
-char sex - 'f' ou 'm', como no nome
-string place - em que local a pessoa está no momento, variando entre 'hotel' e 'safe'
-Person *marriedTo - ponteiro em que aponta para um objeto tipo PERSON a qual a pessoa em questão é casa, ex. f1 é casada com m1
+### Estrutura de classes:
+
+*PERSON*
+-   Classe que representa as pessoas no problema
 
 
-SCENARIO - Classe controladora que representa os estados no problema
-Person *f1, *f2, *f3, *m1, *m2, *m3 - pessoas do problema
-bool boat - representação do barco
+*SCENARIO*
+- Classe controladora que representa os estados no problema
+
+*MWTREE*
+- Classe que representa a estrutura de dados reponsável por armazenar os estados (objetos tipo SCENARIO) em seus nós e descrever os caminhos tomados pelas diferentes buscas implementadas.
 
 
-MWTREE - Classe que representa a estrutura de dados 
+### ROTINA DE TESTES PARA PERMITIR UMA TRAVESSIA:
+
+1. Seleciona uma entre quinze regras.
+2. Ao menos uma pessoa deve existir em cada travessia.
+3. Caso a pessoa 1 seja a mesma pessoa que a pessoa 2, trata-se como se a pessoa 1 atravessasse sozinha.
+4. Barco está na mesma margem que a(s) pessoa(s) escolhida(s) para a travessia.
+5. Para cada uma das pessoas escolhidas, se:
+   1. Mulher, **não** poderá atravessar caso:
+      1. Há outros homens na outra margem e,
+      2. seu marido não está no barco e,
+      3. seu marido não está na outra margem.
+   2. Homem, **não** poderá atravessar caso:
+      1. Há mulheres sem seus respectivos maridos na outra margem e,
+      2. há homens na margem em que está sua esposa e,
+      3. sua esposa não está no barco e,
+      4. sua esposa não está na outra margem.
+6. Após a travessia, compara-se o objeto SCENARIO gerado com os demais já guardados em nós da árvore. Se:
+   1. Encontrar algum objeto SCENARIO igual ao SCENARIO atual, retorna ao estado anterior e descarta o atual e solicita nova regra.
+   2. Não encontrar algum objeto SCENARIO igual ao SCENARIO atual, gera novo nó na árvore com o SCENARIO gerado. Compara o SCENARIO gerado com o estado solução. Caso igual, encerra a busca com o estado solução encontrado. Caso diferente, solicita nova regra.
+7. Se não encerrado, testa nova regra. Caso não haja nova regra a ser testada, encerra busca com o estado de impasse.
+   

@@ -190,7 +190,7 @@ bool Scenario::isThereWifeNoHusband(Person *husband, bool margin, Person *guest)
 bool Scenario::isAllowed(Person *p, Person *guest) {
 
     bool desiredMargin = !p->isSafe();
-    // Se [a pessoa é mulher] e [há outros homens na outra margem] e [seu marido não está no barco junto com a pessoa] e
+    // Se [a pessoa é mulher] e [há outros homens na outra margem] e [seu marido não está no barco] e
     //[seu marido não está na outra margem], então nao pode atravessar
     if (!p->isMale()) {
         if (this->isThereOtherMale(p, desiredMargin, guest) &&
@@ -202,7 +202,7 @@ bool Scenario::isAllowed(Person *p, Person *guest) {
         }
     }
     // Se [pessoa 1 é homem] e [sua esposa não está na outra margem] e [há homens na margem em que está sua esposa]
-    // e [há esposas sem seus maridos na outra margem], então não pode atravessar
+    // e [há esposas sem seus maridos na outra margem] e [sua esposa não está indo no barco], então não pode atravessar
     else {
         if (p->getMarriedTo()->isSafe() != desiredMargin &&
             isThereOtherMale(p->getMarriedTo(), p->getMarriedTo()->isSafe(), guest) && !p->isMarriedTo(guest)){
