@@ -32,13 +32,6 @@ Scenario::Scenario() {
 }
 
 Scenario::~Scenario() {
-    delete f1;
-    delete f2;
-    delete f3;
-    delete m1;
-    delete m2;
-    delete m3;
-    delete boat;
 }
 
 Person *Scenario::getPerson(std::string name) {
@@ -63,7 +56,7 @@ Boat *Scenario::getBoat() {
 }
 
 void Scenario::print() {
-    cout << "Estado " << iterCounter << ": " << endl;
+    //cout << "Estado " << iterCounter << ": " << endl;
     cout << "S A F E│````│H O T E L" << endl;
     cout << "       │````│         " << endl;
     cout << "  ";
@@ -127,6 +120,9 @@ void Scenario::print() {
         cout << "   ";
     cout <<  "    " << endl;
     cout << "       │````│         " << endl;
+    cout << endl;
+    cout << "--------------------------------------";
+    cout << endl;
 
     //this->printCheck();
 }
@@ -195,9 +191,7 @@ bool Scenario::isAllowed(Person *p, Person *guest) {
     if (!p->isMale()) {
         if (this->isThereOtherMale(p, desiredMargin, guest) &&
             !p->isMarriedTo(guest) && p->getMarriedTo()->isSafe() != desiredMargin) {
-            cout
-                    << "PROIBÍDO: Uma mulher não pode atravessar pois ficará na presença de homens sem que esteja com seu marido."
-                    << endl;
+            cout << "PROIBÍDO: Uma mulher não pode atravessar pois ficará na presença de homens sem que esteja com seu marido.";
             return false;
         }
     }
@@ -206,13 +200,11 @@ bool Scenario::isAllowed(Person *p, Person *guest) {
     else {
         if (p->getMarriedTo()->isSafe() != desiredMargin &&
             isThereOtherMale(p->getMarriedTo(), p->getMarriedTo()->isSafe(), guest) && !p->isMarriedTo(guest)){
-            cout << "PROIBÍDO: Um homem não pode atravessar pois deixará sua esposa na presença de outros homens."
-                 << endl;
+            cout << "PROIBÍDO: Um homem não pode atravessar pois deixará sua esposa na presença de outros homens.";
             return false;
         }
         if (this->isThereWifeNoHusband(p, desiredMargin, guest)){
-            cout << "PROIBÍDO: Um homem não pode atravessar pois ficará na presença da esposa de outro homem sem que "
-                    "ele esteja presente" << endl;
+            cout << "PROIBÍDO: Um homem não pode atravessar pois ficará na presença da esposa de outro homem sem que ele esteja presente";
             return false;
         }
     }
@@ -227,7 +219,7 @@ bool Scenario::traverse(std::string person1, std::string person2) {
 
     // TESTE 1: Existe pelo menos uma pessoa no barco?
     if (p1 == nullptr && p2 == nullptr){
-        cout << "PROIBÍDO: Barco nao pode fazer a travessia sozinho." << endl;
+        cout << "PROIBÍDO: Barco nao pode fazer a travessia sozinho.";
         return false;
     }
 
@@ -239,7 +231,7 @@ bool Scenario::traverse(std::string person1, std::string person2) {
     // TESTE 2: O barco está na mesma margem dos ocupantes?
     if ((p1 != nullptr && this->getBoat()->isSafe() != p1->isSafe()) ||
             (p2 != nullptr && this->getBoat()->isSafe() != p2->isSafe())){
-        cout << "PROIBÍDO: Uma das pessoas não está na mesma margem do barco." << endl;
+        cout << "PROIBÍDO: Uma das pessoas não está na mesma margem do barco.";
         return false;
     }
 
@@ -263,4 +255,79 @@ bool Scenario::traverse(std::string person1, std::string person2) {
     iterCounter++;
 
     return true;
+}
+
+bool Scenario::operator == (Scenario &sc) {
+    if(this->f1->isSafe() == sc.f1->isSafe() &&
+            this->f2->isSafe() == sc.f2->isSafe() &&
+            this->f3->isSafe() == sc.f3->isSafe() &&
+            this->m1->isSafe() == sc.m1->isSafe() &&
+            this->m2->isSafe() == sc.m2->isSafe() &&
+            this->m3->isSafe() == sc.m3->isSafe() &&
+            this->boat->isSafe() == sc.boat->isSafe())
+        return true;
+    else
+        return false;
+}
+
+void Scenario::setState(Scenario state) {
+    this->f1->setPlace(state.f1->getPlace());
+    this->f2->setPlace(state.f2->getPlace());
+    this->f3->setPlace(state.f3->getPlace());
+    this->m1->setPlace(state.m1->getPlace());
+    this->m2->setPlace(state.m2->getPlace());
+    this->m3->setPlace(state.m3->getPlace());
+    this->boat->setPlace(state.boat->getPlace());
+}
+
+bool Scenario::applyRule(int rule) {
+    switch(rule) {
+        case 1:
+            return this->traverse("f1", "f2");
+            break;
+        case 2:
+            return this->traverse("f1", "f3");
+            break;
+        case 3:
+            return this->traverse("f2", "f3");
+            break;
+        case 4:
+            return this->traverse("f1", "x");
+            break;
+        case 5:
+            return this->traverse("f2", "x");
+            break;
+        case 6:
+            return this->traverse("f3", "x");
+            break;
+        case 7:
+            return this->traverse("m1", "m2");
+            break;
+        case 8:
+            return this->traverse("m1", "m3");
+            break;
+        case 9:
+            return this->traverse("m2", "m3");
+            break;
+        case 10:
+            return this->traverse("m1", "x");
+            break;
+        case 11:
+            return this->traverse("m2", "x");
+            break;
+        case 12:
+            return this->traverse("m3", "x");
+            break;
+        case 13:
+            return this->traverse("f1", "m1");
+            break;
+        case 14:
+            return this->traverse("f2", "m2");
+            break;
+        case 15:
+            return this->traverse("f3", "m3");
+            break;
+        default:
+            break;
+    }
 }

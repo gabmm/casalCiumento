@@ -11,3 +11,6 @@ target_include_directories(casal PUBLIC ${PROJECT_SOURCE_DIR}/include)
 
 add_executable(casalCiumento main.cpp)
 target_link_libraries(casalCiumento casal)
+
+add_executable(busca1 BuscaIrrevogavel.cpp)
+target_link_libraries(busca1 casal)

@@ -9,7 +9,7 @@ Boat::Boat() {
     this->place = "hotel";
 }
 Boat::~Boat() {
-
+    delete this;
 }
 
 string Boat::getPlace() {

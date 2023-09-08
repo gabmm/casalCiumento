@@ -13,7 +13,7 @@ Person::Person(char sex) {
 }
 
 Person::~Person() {
-
+    delete this;
 }
 
 bool Person::isMale() {
