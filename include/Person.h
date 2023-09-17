@@ -30,7 +30,7 @@ private:
     string name;
     char sex;
     string place;
-    Person *marriedTo;
+    Person *marriedTo; //ponteiro para o esposo(a)
 };
 
 

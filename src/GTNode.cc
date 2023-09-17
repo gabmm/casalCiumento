@@ -1,6 +1,7 @@
 #include "GTNode.h"
 #include "Scenario.h"
 #include <vector>
+#include <algorithm>
 
 GTNode::GTNode(Scenario state, GTNode* parent, int stateNumber, int ruleNumber) {
     this->state = state;
@@ -36,6 +37,19 @@ void GTNode::printState() {
     cout << "State: " << this->stateNumber << endl;
     cout << "Last Rule: R" << this->selectedRule << endl;
     this->state.print();
+    queue<int> q = this->getQueue();
+    cout << "Possibly rules: {";
+    while (!q.empty())
+    {
+        if (q.size() != 1)
+            cout << q.front() << " ";
+        else
+            cout << q.front();
+
+        q.pop();
+    }
+    cout << "}" << endl;
+    cout << "--------------------------------------" << endl;
 }
 
 bool GTNode::isLeaf() {
@@ -51,3 +65,30 @@ bool GTNode::isEqual(Scenario sc) {
     else
         return false;
 }
+
+queue<int> GTNode::getQueue(){
+    return this->applicableRules;
+}
+
+void GTNode::setQueue(queue<int> q) {
+    this->applicableRules = q;
+}
+
+void GTNode::popRule() {
+    queue<int> q = this->applicableRules;
+    q.pop();
+    this->setQueue(q);
+}
+
+void GTNode::removeChild(GTNode *child) {
+    vector<GTNode*>::iterator it;
+    it = find(this->children.begin(), this->children.end(), child);
+    if (it != this->children.end()){
+        this->children.erase(it);
+        //cout << "filho removido!" << endl;
+    }
+    else
+    {
+        //cout << "filho nao encontrado" << endl;
+    }
+};

@@ -31,7 +31,7 @@ int main() {
     vector<int> chosenVector; // vetor que recebe a regra escolhida
 
     chosenVector = crescente; //escolhe estrategia da busca irrevogavel
-    GTree gtree; //inicializa arvore
+    GTree gtree(chosenVector); //inicializa arvore
     GTNode *node = gtree.getRoot(); //ponteiro pro ultimo estado, nesse caso o estado inicial
     int rule = 0; //inicia contador de regras com zero
 
@@ -43,7 +43,7 @@ int main() {
         cout << "Aplicando regra R" << chosenVector.at(rule) << "..." << endl;
 
         if(state.applyRule(chosenVector.at(rule))){ //se puder atravessar
-            if (!gtree.Search(state)) { //se o estado que a travessia gerou nao se repetir
+            if (!gtree.FindOnPath(state, node)) { //se o estado que a travessia gerou nao se repetir
                 cout << "CONCLUÍDO: Regra R" << chosenVector.at(rule) << " aplicada!";
                 GTNode *n1 = gtree.Insert(state, node, chosenVector.at(rule)); //insere novo estado na arvore, salva em n1
                 node = n1; //salva ultimo estado

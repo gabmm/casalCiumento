@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include <queue>
 #include "Person.h"
 #include "Boat.h"
 
@@ -27,6 +28,8 @@ public:
     bool operator == (Scenario &sc); //se a margem de todas as pessoas for a mesma, entao temos estados iguais
     void setState(Scenario state); //copia o state para o estado que o chama
     bool applyRule(int rule); //aplica a regra
+    bool canApply(int rule); //retorna true se a regra pode ser aplicada
+    bool canTraverse(string p1, string p2); // retorna true se P1 e P2 puderem atravessar
 
 
 private:

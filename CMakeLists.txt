@@ -14,3 +14,6 @@ target_link_libraries(casalCiumento casal)
 
 add_executable(busca1 BuscaIrrevogavel.cpp)
 target_link_libraries(busca1 casal)
+
+add_executable(busca2 BuscaBacktracking.cpp)
+target_link_libraries(busca2 casal)

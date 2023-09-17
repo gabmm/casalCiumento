@@ -121,8 +121,6 @@ void Scenario::print() {
     cout <<  "    " << endl;
     cout << "       │````│         " << endl;
     cout << endl;
-    cout << "--------------------------------------";
-    cout << endl;
 
     //this->printCheck();
 }
@@ -191,7 +189,7 @@ bool Scenario::isAllowed(Person *p, Person *guest) {
     if (!p->isMale()) {
         if (this->isThereOtherMale(p, desiredMargin, guest) &&
             !p->isMarriedTo(guest) && p->getMarriedTo()->isSafe() != desiredMargin) {
-            cout << "PROIBÍDO: Uma mulher não pode atravessar pois ficará na presença de homens sem que esteja com seu marido.";
+            //cout << "PROIBÍDO: Uma mulher não pode atravessar pois ficará na presença de homens sem que esteja com seu marido.";
             return false;
         }
     }
@@ -200,11 +198,11 @@ bool Scenario::isAllowed(Person *p, Person *guest) {
     else {
         if (p->getMarriedTo()->isSafe() != desiredMargin &&
             isThereOtherMale(p->getMarriedTo(), p->getMarriedTo()->isSafe(), guest) && !p->isMarriedTo(guest)){
-            cout << "PROIBÍDO: Um homem não pode atravessar pois deixará sua esposa na presença de outros homens.";
+            //cout << "PROIBÍDO: Um homem não pode atravessar pois deixará sua esposa na presença de outros homens.";
             return false;
         }
         if (this->isThereWifeNoHusband(p, desiredMargin, guest)){
-            cout << "PROIBÍDO: Um homem não pode atravessar pois ficará na presença da esposa de outro homem sem que ele esteja presente";
+            //cout << "PROIBÍDO: Um homem não pode atravessar pois ficará na presença da esposa de outro homem sem que ele esteja presente";
             return false;
         }
     }
@@ -212,14 +210,13 @@ bool Scenario::isAllowed(Person *p, Person *guest) {
     return true;
 }
 
-bool Scenario::traverse(std::string person1, std::string person2) {
-
+bool Scenario::canTraverse(std::string person1, std::string person2) {
     Person *p1 = getPerson(person1);
     Person *p2 = getPerson(person2);
 
     // TESTE 1: Existe pelo menos uma pessoa no barco?
     if (p1 == nullptr && p2 == nullptr){
-        cout << "PROIBÍDO: Barco nao pode fazer a travessia sozinho.";
+        //cout << "PROIBÍDO: Barco nao pode fazer a travessia sozinho.";
         return false;
     }
 
@@ -230,8 +227,8 @@ bool Scenario::traverse(std::string person1, std::string person2) {
 
     // TESTE 2: O barco está na mesma margem dos ocupantes?
     if ((p1 != nullptr && this->getBoat()->isSafe() != p1->isSafe()) ||
-            (p2 != nullptr && this->getBoat()->isSafe() != p2->isSafe())){
-        cout << "PROIBÍDO: Uma das pessoas não está na mesma margem do barco.";
+        (p2 != nullptr && this->getBoat()->isSafe() != p2->isSafe())){
+        //cout << "PROIBÍDO: Uma das pessoas não está na mesma margem do barco.";
         return false;
     }
 
@@ -242,19 +239,31 @@ bool Scenario::traverse(std::string person1, std::string person2) {
     if (p2 != nullptr && !this->isAllowed(p2, p1))
         return false;
 
-
-    // OK TUDO CERTO!
-    if(p1 != nullptr)
-        p1->changeMargin();
-
-    if(p2 != nullptr)
-        p2->changeMargin();
-
-    this->boat->changeMargin();
-
-    iterCounter++;
-
+    //OK, TUDO CERTO
     return true;
+}
+
+bool Scenario::traverse(std::string person1, std::string person2) {
+
+    Person *p1 = getPerson(person1);
+    Person *p2 = getPerson(person2);
+
+    if (this->canTraverse(person1, person2))
+    {
+        if(p1 != nullptr)
+            p1->changeMargin();
+
+        if(p2 != nullptr)
+            p2->changeMargin();
+
+        this->boat->changeMargin();
+
+        iterCounter++;
+
+        return true;
+    }
+
+    return false;
 }
 
 bool Scenario::operator == (Scenario &sc) {
@@ -326,6 +335,58 @@ bool Scenario::applyRule(int rule) {
             break;
         case 15:
             return this->traverse("f3", "m3");
+            break;
+        default:
+            break;
+    }
+}
+
+bool Scenario::canApply(int rule) {
+    switch(rule) {
+        case 1:
+            return this->canTraverse("f1", "f2");
+            break;
+        case 2:
+            return this->canTraverse("f1", "f3");
+            break;
+        case 3:
+            return this->canTraverse("f2", "f3");
+            break;
+        case 4:
+            return this->canTraverse("f1", "x");
+            break;
+        case 5:
+            return this->canTraverse("f2", "x");
+            break;
+        case 6:
+            return this->canTraverse("f3", "x");
+            break;
+        case 7:
+            return this->canTraverse("m1", "m2");
+            break;
+        case 8:
+            return this->canTraverse("m1", "m3");
+            break;
+        case 9:
+            return this->canTraverse("m2", "m3");
+            break;
+        case 10:
+            return this->canTraverse("m1", "x");
+            break;
+        case 11:
+            return this->canTraverse("m2", "x");
+            break;
+        case 12:
+            return this->canTraverse("m3", "x");
+            break;
+        case 13:
+            return this->canTraverse("f1", "m1");
+            break;
+        case 14:
+            return this->canTraverse("f2", "m2");
+            break;
+        case 15:
+            return this->canTraverse("f3", "m3");
             break;
         default:
             break;
