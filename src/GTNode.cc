@@ -22,7 +22,7 @@ GTNode* GTNode::getParent() {
     return this->parent;
 }
 
-vector<GTNode*> GTNode::getChildren() {
+const vector<GTNode*>& GTNode::getChildren() {
     return this->children;
 }
 

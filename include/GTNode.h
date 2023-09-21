@@ -15,7 +15,7 @@ public:
     ~GTNode(); //destrutor
     Scenario getState(); //retorna o SCENARIO (key)
     GTNode* getParent(); //retorna o ponteiro para o pai
-    vector<GTNode*> getChildren(); //retorna vetor de ponteiros para os filhos
+    const vector<GTNode*>& getChildren(); //retorna vetor de ponteiros para os filhos
     void makeChild(GTNode* child); //após um no ser criado, essa funcao adiciona um ponteiro para ele no vetor de filhos do no atual
     void printState(); //printa o estado, objeto scenario (key)
     bool isLeaf(); //retorna se é folha (vetor de filhos vazio)
