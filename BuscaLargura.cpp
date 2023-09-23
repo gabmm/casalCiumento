@@ -77,5 +77,6 @@ int main() {
     cout << "Profundidade " << depth << endl;
     cout << "SOLUÇÃO ENCONTRADO COM PASSAGEM POR " << gtree.getTotalStates() << " estados diferentes." << endl;
 
+
     return 0;
 }
