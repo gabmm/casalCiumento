@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.26)
+cmake_minimum_required(VERSION 3.10.2)
 project(casalCiumento)
 
 set(CMAKE_CXX_STANDARD 17)
@@ -17,3 +17,6 @@ target_link_libraries(busca1 casal)
 
 add_executable(busca2 BuscaBacktracking.cpp)
 target_link_libraries(busca2 casal)
+
+add_executable(busca3 BuscaLargura.cpp)
+target_link_libraries(busca3 casal)
