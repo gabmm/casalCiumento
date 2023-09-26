@@ -12,6 +12,16 @@
 
 using namespace std;
 
+bool prune(queue<GTNode*> closedAux, GTNode* node) { // Verifica se pode fazer a poda
+    while (!closedAux.empty()) //Pecorre o vetor fechado e compara com o node
+    {
+        if (closedAux.front()->isEqual(node->getState()))
+            return true;
+        closedAux.pop();
+    }
+    return false;
+}
+
 
 int main() {
 
@@ -34,7 +44,7 @@ int main() {
     vector<int> homemCasalMulher{ 7,8,9,10,11,12,13,14,15,1,2,3,4,5,6 };
     vector<int> chosenVector; // vetor que recebe a regra escolhida
 
-    chosenVector = crescente; //escolhe estrategia de busca
+    chosenVector = decrescente; //escolhe estrategia de busca
     GTree gtree(chosenVector); //inicializa arvore
     GTNode* node = gtree.getRoot(); //ponteiro pro ultimo estado, nesse caso o estado inicial
 
@@ -51,29 +61,42 @@ int main() {
     while (true)
     {
         top = open.top();                   // recebe sempre o primeiro elemento da pilha de abertos
-        Scenario state;                     //cria cenario inicial
-        state.setState(top->getState());   // seta ele para que seja igual ao atual
+
         // top->printState();                // imprime estado atual
         if (open.empty()) {
             cout << endl << "ERRO! Não foi encontrada a solução." << endl;
             break;
         }
-        closed.push(top);       // copia o no visitado de aberto para fechado
-        open.pop();             // remove o no visitado da fila de abertos
-        while (!top->getQueue().empty())  // Enquanto a lista de regras não for vazia vou aplicar todas as regras possiveis
-        {
-            int rule = top->getQueue().front();         //copia a primeira regra da fila de regras possiveis
-            state.applyRule(rule);                      //aplica a regra no cenário criado
-            node = gtree.Insert(state, top, rule);   //insere o nó no cenario com o pai first;
-            open.push(node);                         //adiciona o novo no na lista de abertos
-            top->popRule();                         //remove a regra usada
 
-        }
         if (top->getState().isEveryoneSafe()) { // verifica se o no que acabou de ser visitado é a solução
             cout << endl << "PARABÉNS! Estão todos a salvo. Alcançado estado objetivo." << endl;
             break;
         }
+
         //caso não haja mais regras para aplicar e não é a solução então significa que temos de mudar o nosso first
+
+        closed.push(top);       // copia o no visitado de aberto para fechado
+        open.pop();             // remove o no visitado da fila de abertos
+        while (!top->getQueue().empty())  // Enquanto a lista de regras não for vazia vou aplicar todas as regras possiveis
+        {
+            Scenario state;                     //cria cenario inicial
+            state.setState(top->getState());   // seta ele para que seja igual ao atual
+            int rule = top->getQueue().front();       //copia a primeira regra da fila de regras possiveis
+            state.applyRule(rule);
+            if (!gtree.FindOnPath(state, node)) { //se o estado que a travessia gerou nao se repetiu                   //aplica a regra no cenário criado
+                node = gtree.Insert(state, top, rule);    //insere o nó no cenario com o pai first;
+                if (prune(closed, node)) {  // realiza a poda
+                    GTNode* p; //cria ponteiro
+                    p = node; //aponta para o estado atual
+                    node = p->getParent(); //ponteiro atual aponta para o pai do estado atual; Ou seja, novo estado atual é o pai
+                    gtree.RemoveLeaf(p); //remove o estado antigo (filho) usando o ponteiro criado
+                }
+                else
+                    open.push(node);
+            }
+            top->popRule();
+
+        }
 
     }
 
