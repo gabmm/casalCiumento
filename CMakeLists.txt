@@ -20,3 +20,6 @@ target_link_libraries(busca2 casal)
 
 add_executable(busca3 BuscaLargura.cpp)
 target_link_libraries(busca3 casal)
+
+add_executable(busca4 BuscaProfundidade.cpp)
+target_link_libraries(busca4 casal)

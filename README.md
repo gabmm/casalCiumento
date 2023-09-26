@@ -57,3 +57,16 @@ Deve-se encontrar uma forma de atravessar as seis pessoas em segurança sem que 
    1. Encontrar algum objeto SCENARIO igual ao SCENARIO atual, retorna ao estado anterior, descarta o atual e solicita nova regra.
    2. Não encontrar algum objeto SCENARIO igual ao SCENARIO atual, gera novo nó na árvore com o SCENARIO gerado.
 7. **Encerra rotina** se o SCENARIO atual for igual ao estado objetivo ou se as regras se esgoarem. Caso nenhuma das duas proposições for verdadeira, retorna em 1.
+
+---
+
+> Arquivos gerados após o build
+
+| Nome | Descrição | Arquivo |
+| --- | --- | --- |
+| `casalCiumento` | Deixa o usuário escolher as regras através do teclado | main.cpp |
+| `busca1` | Realiza uma busca irrevogável | BuscaIrrevogavel.cpp |
+| `busca2` | Realiza uma busca Backtracking | BuscaBacktracking.cpp |
+| `busca3` | Realiza uma busca em largura  | BuscaLargura.cpp |
+| `busca4` | Realiza uma busca em profundidade | BuscaProfundidade.cpp |
+
