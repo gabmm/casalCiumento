@@ -5,13 +5,18 @@
 #include "include/Scenario.h"
 #include "include/GTree.h"
 #include "include/GTNode.h"
+#include "include/Metrics.h"
 #include <string>
 #include <queue>
 
 using namespace std;
 
-
 int main() {
+
+
+    Metrics p;
+    Setup_metrics(&p);
+    auto t0 = std::chrono::high_resolution_clock::now();
 
     /* vetores determinam a escolha da estrategia a partir de uma sequencia de regras conforme a tabela:
     Regra 1: [f1 f2] Regra 2: [f1 f3] Regra 3: [f2 f3]
@@ -31,52 +36,58 @@ int main() {
     GTree gtree(chosenVector); //inicializa arvore
     GTNode* node = gtree.getRoot(); //ponteiro pro ultimo estado, nesse caso o estado inicial
 
-
+    cout << "Busca em largura " << endl;
     gtree.print();
 
-    queue<GTNode*> open;
-    queue<GTNode*> closed;
-    open.push(node);
+    queue<GTNode*> open; // Fila dos abertos
+    queue<GTNode*> closed; // Fila dos fechados
+    open.push(node); // Adicionar a raiz no aberto
+    GTNode* first;
 
-    unsigned int rule = 0; //inicia contador de regras com zero
     unsigned int depth = 0;
-    while (true) // Verifico se o último estado é a solução
-    {
-        Scenario state; //cria cenario inicial
-        state.setState(node->getState()); //copia ultimo cenario
-        node->printState(); //imprime ultimo cenario
-        cout << "Aplicando regra R" << chosenVector.at(rule) << "..." << endl;
 
-        while (rule < 15) // Para cada estado vamos verificar todas as regras
-        {
-            if (state.applyRule(chosenVector.at(rule))) {  // Verifica se pode aplicar a regra
-                if (!gtree.FindOnPath(state, node)) { //se o estado que a travessia gerou nao se repetir
-                    cout << "CONCLUÍDO: Regra R" << chosenVector.at(rule) << " aplicada!" << endl;
-                    node = gtree.Insert(state, open.front(), chosenVector.at(rule)); // insere novo estado na arvore, salva em node (o pai vai ter todas as possibilidades de estado)
-                    open.push(node); // adiciona o novo estado na fila de abertos 
-                }
-            }
-            rule++;
+    while (true)
+    {
+        first = open.front();               // recebe sempre o primeiro elemento da fila de abertos
+        Scenario state;                     //cria cenario inicial
+        state.setState(first->getState());   // seta ele para que seja igual ao atual
+        // first->printState();                // imprime estado atual
+        if (open.empty()) {
+            cout << endl << "ERRO! Não foi encontrada a solução." << endl;
+            break;
         }
-        closed.push(open.front()); // copia o no visitado de aberto para fechado
-        open.pop(); // remove o no visitado da fila de abertos
-        if (closed.back()->getState().isEveryoneSafe()) { // verifica se o no que acabou de ser visitado é a solução
+        while (!first->getQueue().empty())  // Enquanto a lista de regras não for vazia vou aplicar todas as regras possiveis
+        {
+            int rule = first->getQueue().front();       //copia a primeira regra da fila de regras possiveis
+            state.applyRule(rule);                      //aplica a regra no cenário criado
+            node = gtree.Insert(state, first, rule);    //insere o nó no cenario com o pai first;
+            open.push(node);                            //adiciona o novo no na lista de abertos
+            first->popRule();                           //remove a regra usada
+        }
+        if (first->getState().isEveryoneSafe()) { // verifica se o no que acabou de ser visitado é a solução
             cout << endl << "PARABÉNS! Estão todos a salvo. Alcançado estado objetivo." << endl;
             break;
         }
-        rule = 0; // reseta contador de regras 
+
+        //caso não haja mais regras para aplicar e não é a solução então significa que temos de mudar o nosso first
+        closed.push(first); // copia o no visitado de aberto para fechado
+        open.pop();         // remove o no visitado da fila de abertos
     }
 
-    GTNode* parent = closed.back();
+    GTNode* parent = open.front();
     while (parent != nullptr)
     {
         parent->getState().print();
         parent = parent->getParent();
         depth++;
     }
+    
     cout << "Profundidade " << depth << endl;
     cout << "SOLUÇÃO ENCONTRADO COM PASSAGEM POR " << gtree.getTotalStates() << " estados diferentes." << endl;
-
-
+    auto t1 = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> delta = t1 - t0;
+    Set_CPUtime(&p, delta.count());
+    Print_metrics(&p);
+    cout << endl;
     return 0;
 }
