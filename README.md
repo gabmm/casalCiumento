@@ -70,3 +70,27 @@ Deve-se encontrar uma forma de atravessar as seis pessoas em segurança sem que 
 | `busca3` | Realiza uma busca em largura  | BuscaLargura.cpp |
 | `busca4` | Realiza uma busca em profundidade | BuscaProfundidade.cpp |
 
+> Para as buscas busca3 e busca4, temos a seguinte estrutura:
+
+
+## ./busca arg1 arg2 
+
+| Busca | Descrição | 
+| --- | --- | 
+| `busca3` | Realiza uma busca em largura  |
+| `busca4` | Realiza uma busca em profundidade | 
+
+| arg1 | Descrição | 
+| --- | ---  |
+| 0 | Realiza a busca sem usar a poda  |
+| 1 | Realiza a busca usando a poda |
+
+
+| arg2 | Descrição | 
+| --- | ---  |
+| 1 | Realiza a busca usando a regra ``crescente``  |
+| 2 | Realiza a busca usando a regra ``decrescente``  |
+| 3 | Realiza a busca usando a regra ``casalMulherHomem``  |
+| 4 | Realiza a busca usando a regra ``casalHomemMulher``  |
+| 5 | Realiza a busca usando a regra ``homemCasalMulher``  |
+
