@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/casal.dir/src/AIAlgorithm.cc.o"
+  "CMakeFiles/casal.dir/src/AIAlgorithm.cc.o.d"
   "CMakeFiles/casal.dir/src/Boat.cc.o"
   "CMakeFiles/casal.dir/src/Boat.cc.o.d"
   "CMakeFiles/casal.dir/src/GTNode.cc.o"

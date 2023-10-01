@@ -427,6 +427,9 @@
 		<Unit filename="/home/patrick/Desktop/Projects/casalCiumento/performance.cpp">
 			<Option target="performance"/>
 		</Unit>
+		<Unit filename="/home/patrick/Desktop/Projects/casalCiumento/src/AIAlgorithm.cc">
+			<Option target="casal"/>
+		</Unit>
 		<Unit filename="/home/patrick/Desktop/Projects/casalCiumento/src/Boat.cc">
 			<Option target="casal"/>
 		</Unit>

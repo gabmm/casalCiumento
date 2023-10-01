@@ -69,10 +69,24 @@ include CMakeFiles/casal.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/casal.dir/flags.make
 
+CMakeFiles/casal.dir/src/AIAlgorithm.cc.o: CMakeFiles/casal.dir/flags.make
+CMakeFiles/casal.dir/src/AIAlgorithm.cc.o: /home/patrick/Desktop/Projects/casalCiumento/src/AIAlgorithm.cc
+CMakeFiles/casal.dir/src/AIAlgorithm.cc.o: CMakeFiles/casal.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/casal.dir/src/AIAlgorithm.cc.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/casal.dir/src/AIAlgorithm.cc.o -MF CMakeFiles/casal.dir/src/AIAlgorithm.cc.o.d -o CMakeFiles/casal.dir/src/AIAlgorithm.cc.o -c /home/patrick/Desktop/Projects/casalCiumento/src/AIAlgorithm.cc
+
+CMakeFiles/casal.dir/src/AIAlgorithm.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/casal.dir/src/AIAlgorithm.cc.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/patrick/Desktop/Projects/casalCiumento/src/AIAlgorithm.cc > CMakeFiles/casal.dir/src/AIAlgorithm.cc.i
+
+CMakeFiles/casal.dir/src/AIAlgorithm.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/casal.dir/src/AIAlgorithm.cc.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/patrick/Desktop/Projects/casalCiumento/src/AIAlgorithm.cc -o CMakeFiles/casal.dir/src/AIAlgorithm.cc.s
+
 CMakeFiles/casal.dir/src/Boat.cc.o: CMakeFiles/casal.dir/flags.make
 CMakeFiles/casal.dir/src/Boat.cc.o: /home/patrick/Desktop/Projects/casalCiumento/src/Boat.cc
 CMakeFiles/casal.dir/src/Boat.cc.o: CMakeFiles/casal.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/casal.dir/src/Boat.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/casal.dir/src/Boat.cc.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/casal.dir/src/Boat.cc.o -MF CMakeFiles/casal.dir/src/Boat.cc.o.d -o CMakeFiles/casal.dir/src/Boat.cc.o -c /home/patrick/Desktop/Projects/casalCiumento/src/Boat.cc
 
 CMakeFiles/casal.dir/src/Boat.cc.i: cmake_force
@@ -86,7 +100,7 @@ CMakeFiles/casal.dir/src/Boat.cc.s: cmake_force
 CMakeFiles/casal.dir/src/GTNode.cc.o: CMakeFiles/casal.dir/flags.make
 CMakeFiles/casal.dir/src/GTNode.cc.o: /home/patrick/Desktop/Projects/casalCiumento/src/GTNode.cc
 CMakeFiles/casal.dir/src/GTNode.cc.o: CMakeFiles/casal.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/casal.dir/src/GTNode.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/casal.dir/src/GTNode.cc.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/casal.dir/src/GTNode.cc.o -MF CMakeFiles/casal.dir/src/GTNode.cc.o.d -o CMakeFiles/casal.dir/src/GTNode.cc.o -c /home/patrick/Desktop/Projects/casalCiumento/src/GTNode.cc
 
 CMakeFiles/casal.dir/src/GTNode.cc.i: cmake_force
@@ -100,7 +114,7 @@ CMakeFiles/casal.dir/src/GTNode.cc.s: cmake_force
 CMakeFiles/casal.dir/src/GTree.cc.o: CMakeFiles/casal.dir/flags.make
 CMakeFiles/casal.dir/src/GTree.cc.o: /home/patrick/Desktop/Projects/casalCiumento/src/GTree.cc
 CMakeFiles/casal.dir/src/GTree.cc.o: CMakeFiles/casal.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/casal.dir/src/GTree.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/casal.dir/src/GTree.cc.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/casal.dir/src/GTree.cc.o -MF CMakeFiles/casal.dir/src/GTree.cc.o.d -o CMakeFiles/casal.dir/src/GTree.cc.o -c /home/patrick/Desktop/Projects/casalCiumento/src/GTree.cc
 
 CMakeFiles/casal.dir/src/GTree.cc.i: cmake_force
@@ -114,7 +128,7 @@ CMakeFiles/casal.dir/src/GTree.cc.s: cmake_force
 CMakeFiles/casal.dir/src/Person.cc.o: CMakeFiles/casal.dir/flags.make
 CMakeFiles/casal.dir/src/Person.cc.o: /home/patrick/Desktop/Projects/casalCiumento/src/Person.cc
 CMakeFiles/casal.dir/src/Person.cc.o: CMakeFiles/casal.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/casal.dir/src/Person.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/casal.dir/src/Person.cc.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/casal.dir/src/Person.cc.o -MF CMakeFiles/casal.dir/src/Person.cc.o.d -o CMakeFiles/casal.dir/src/Person.cc.o -c /home/patrick/Desktop/Projects/casalCiumento/src/Person.cc
 
 CMakeFiles/casal.dir/src/Person.cc.i: cmake_force
@@ -128,7 +142,7 @@ CMakeFiles/casal.dir/src/Person.cc.s: cmake_force
 CMakeFiles/casal.dir/src/Scenario.cc.o: CMakeFiles/casal.dir/flags.make
 CMakeFiles/casal.dir/src/Scenario.cc.o: /home/patrick/Desktop/Projects/casalCiumento/src/Scenario.cc
 CMakeFiles/casal.dir/src/Scenario.cc.o: CMakeFiles/casal.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/casal.dir/src/Scenario.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/casal.dir/src/Scenario.cc.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/casal.dir/src/Scenario.cc.o -MF CMakeFiles/casal.dir/src/Scenario.cc.o.d -o CMakeFiles/casal.dir/src/Scenario.cc.o -c /home/patrick/Desktop/Projects/casalCiumento/src/Scenario.cc
 
 CMakeFiles/casal.dir/src/Scenario.cc.i: cmake_force
@@ -141,6 +155,7 @@ CMakeFiles/casal.dir/src/Scenario.cc.s: cmake_force
 
 # Object files for target casal
 casal_OBJECTS = \
+"CMakeFiles/casal.dir/src/AIAlgorithm.cc.o" \
 "CMakeFiles/casal.dir/src/Boat.cc.o" \
 "CMakeFiles/casal.dir/src/GTNode.cc.o" \
 "CMakeFiles/casal.dir/src/GTree.cc.o" \
@@ -150,6 +165,7 @@ casal_OBJECTS = \
 # External object files for target casal
 casal_EXTERNAL_OBJECTS =
 
+libcasal.a: CMakeFiles/casal.dir/src/AIAlgorithm.cc.o
 libcasal.a: CMakeFiles/casal.dir/src/Boat.cc.o
 libcasal.a: CMakeFiles/casal.dir/src/GTNode.cc.o
 libcasal.a: CMakeFiles/casal.dir/src/GTree.cc.o
@@ -157,7 +173,7 @@ libcasal.a: CMakeFiles/casal.dir/src/Person.cc.o
 libcasal.a: CMakeFiles/casal.dir/src/Scenario.cc.o
 libcasal.a: CMakeFiles/casal.dir/build.make
 libcasal.a: CMakeFiles/casal.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX static library libcasal.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX static library libcasal.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/casal.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/casal.dir/link.txt --verbose=$(VERBOSE)
 

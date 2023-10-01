@@ -388,6 +388,30 @@ performance.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/performance.dir/build.make CMakeFiles/performance.dir/performance.cpp.s
 .PHONY : performance.cpp.s
 
+src/AIAlgorithm.o: src/AIAlgorithm.cc.o
+.PHONY : src/AIAlgorithm.o
+
+# target to build an object file
+src/AIAlgorithm.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/casal.dir/build.make CMakeFiles/casal.dir/src/AIAlgorithm.cc.o
+.PHONY : src/AIAlgorithm.cc.o
+
+src/AIAlgorithm.i: src/AIAlgorithm.cc.i
+.PHONY : src/AIAlgorithm.i
+
+# target to preprocess a source file
+src/AIAlgorithm.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/casal.dir/build.make CMakeFiles/casal.dir/src/AIAlgorithm.cc.i
+.PHONY : src/AIAlgorithm.cc.i
+
+src/AIAlgorithm.s: src/AIAlgorithm.cc.s
+.PHONY : src/AIAlgorithm.s
+
+# target to generate assembly for a file
+src/AIAlgorithm.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/casal.dir/build.make CMakeFiles/casal.dir/src/AIAlgorithm.cc.s
+.PHONY : src/AIAlgorithm.cc.s
+
 src/Boat.o: src/Boat.cc.o
 .PHONY : src/Boat.o
 
@@ -545,6 +569,9 @@ help:
 	@echo "... performance.o"
 	@echo "... performance.i"
 	@echo "... performance.s"
+	@echo "... src/AIAlgorithm.o"
+	@echo "... src/AIAlgorithm.i"
+	@echo "... src/AIAlgorithm.s"
 	@echo "... src/Boat.o"
 	@echo "... src/Boat.i"
 	@echo "... src/Boat.s"
