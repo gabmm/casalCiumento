@@ -202,6 +202,8 @@ CMakeFiles/casalCiumento.dir/main.cpp.o: /home/patrick/Desktop/Projects/casalCiu
   /home/patrick/Desktop/Projects/casalCiumento/include/Scenario.h \
   /home/patrick/Desktop/Projects/casalCiumento/include/GTNode.h \
   /home/patrick/Desktop/Projects/casalCiumento/include/GTNode.h \
+  /home/patrick/Desktop/Projects/casalCiumento/include/AIAlgorithm.h \
+  /home/patrick/Desktop/Projects/casalCiumento/include/GTree.h \
   /home/patrick/Desktop/Projects/casalCiumento/include/Metrics.h \
   /usr/include/c++/11/chrono \
   /usr/include/c++/11/ratio \
@@ -212,8 +214,58 @@ CMakeFiles/casalCiumento.dir/main.cpp.o: /home/patrick/Desktop/Projects/casalCiu
   /usr/include/c++/11/bits/stl_stack.h \
   /usr/include/getopt.h \
   /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
-  /usr/include/x86_64-linux-gnu/bits/getopt_ext.h
+  /usr/include/x86_64-linux-gnu/bits/getopt_ext.h \
+  /usr/include/c++/11/sstream \
+  /usr/include/c++/11/bits/sstream.tcc \
+  /usr/include/c++/11/iomanip \
+  /usr/include/c++/11/locale \
+  /usr/include/c++/11/bits/locale_facets_nonio.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/time_members.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/messages_members.h \
+  /usr/include/libintl.h \
+  /usr/include/c++/11/bits/codecvt.h \
+  /usr/include/c++/11/bits/locale_facets_nonio.tcc \
+  /usr/include/c++/11/bits/locale_conv.h \
+  /usr/include/c++/11/bits/unique_ptr.h \
+  /usr/include/c++/11/utility \
+  /usr/include/c++/11/bits/stl_relops.h \
+  /usr/include/c++/11/tuple \
+  /usr/include/c++/11/array \
+  /usr/include/c++/11/bits/invoke.h \
+  /usr/include/c++/11/bits/quoted_string.h \
+  /usr/include/c++/11/fstream \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h \
+  /usr/include/c++/11/bits/fstream.tcc
 
+
+/usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h:
+
+/usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h:
+
+/usr/include/c++/11/fstream:
+
+/usr/include/c++/11/bits/quoted_string.h:
+
+/usr/include/c++/11/bits/invoke.h:
+
+/usr/include/c++/11/array:
+
+/usr/include/c++/11/utility:
+
+/usr/include/c++/11/bits/locale_conv.h:
+
+/usr/include/c++/11/bits/locale_facets_nonio.tcc:
+
+/usr/include/libintl.h:
+
+/usr/include/x86_64-linux-gnu/c++/11/bits/time_members.h:
+
+/usr/include/c++/11/bits/locale_facets_nonio.h:
+
+/usr/include/c++/11/locale:
+
+/usr/include/c++/11/iomanip:
 
 /usr/include/x86_64-linux-gnu/bits/getopt_core.h:
 
@@ -224,6 +276,8 @@ CMakeFiles/casalCiumento.dir/main.cpp.o: /home/patrick/Desktop/Projects/casalCiu
 /usr/include/c++/11/ratio:
 
 /home/patrick/Desktop/Projects/casalCiumento/include/Metrics.h:
+
+/home/patrick/Desktop/Projects/casalCiumento/include/AIAlgorithm.h:
 
 /home/patrick/Desktop/Projects/casalCiumento/include/GTNode.h:
 
@@ -299,6 +353,8 @@ CMakeFiles/casalCiumento.dir/main.cpp.o: /home/patrick/Desktop/Projects/casalCiu
 
 /usr/include/x86_64-linux-gnu/bits/waitflags.h:
 
+/usr/include/c++/11/bits/unique_ptr.h:
+
 /usr/include/c++/11/ext/type_traits.h:
 
 /usr/include/c++/11/ios:
@@ -326,6 +382,8 @@ CMakeFiles/casalCiumento.dir/main.cpp.o: /home/patrick/Desktop/Projects/casalCiu
 /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
 
 /usr/include/c++/11/bits/predefined_ops.h:
+
+/usr/include/c++/11/bits/fstream.tcc:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/gthr.h:
 
@@ -362,6 +420,8 @@ CMakeFiles/casalCiumento.dir/main.cpp.o: /home/patrick/Desktop/Projects/casalCiu
 /usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h:
 
 /usr/include/c++/11/bits/functional_hash.h:
+
+/usr/include/c++/11/tuple:
 
 /usr/include/c++/11/ostream:
 
@@ -426,6 +486,8 @@ CMakeFiles/casalCiumento.dir/main.cpp.o: /home/patrick/Desktop/Projects/casalCiu
 /usr/include/c++/11/bits/ostream.tcc:
 
 /usr/include/c++/11/iosfwd:
+
+/usr/include/c++/11/bits/stl_relops.h:
 
 /usr/include/c++/11/bits/streambuf.tcc:
 
@@ -507,6 +569,8 @@ CMakeFiles/casalCiumento.dir/main.cpp.o: /home/patrick/Desktop/Projects/casalCiu
 
 /usr/include/x86_64-linux-gnu/bits/time.h:
 
+/usr/include/x86_64-linux-gnu/c++/11/bits/messages_members.h:
+
 /usr/include/alloca.h:
 
 /usr/include/x86_64-linux-gnu/bits/timex.h:
@@ -547,7 +611,11 @@ CMakeFiles/casalCiumento.dir/main.cpp.o: /home/patrick/Desktop/Projects/casalCiu
 
 /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h:
 
+/usr/include/c++/11/sstream:
+
 /usr/include/c++/11/bits/locale_classes.h:
+
+/usr/include/c++/11/bits/codecvt.h:
 
 /usr/include/c++/11/string:
 
@@ -568,6 +636,8 @@ CMakeFiles/casalCiumento.dir/main.cpp.o: /home/patrick/Desktop/Projects/casalCiu
 /usr/include/c++/11/system_error:
 
 /usr/include/c++/11/bits/cxxabi_forced.h:
+
+/usr/include/c++/11/bits/sstream.tcc:
 
 /usr/include/c++/11/string_view:
 
