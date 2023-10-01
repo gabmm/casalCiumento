@@ -12,21 +12,6 @@ target_include_directories(casal PUBLIC ${PROJECT_SOURCE_DIR}/include)
 add_executable(casalCiumento main.cpp)
 target_link_libraries(casalCiumento casal)
 
-add_executable(maunal manual.cpp)
-target_link_libraries(casalCiumento casal)
+add_executable(manual manual.cpp)
+target_link_libraries(manual casal)
 
-add_executable(busca1 BuscaIrrevogavel.cpp)
-target_link_libraries(busca1 casal)
-
-add_executable(busca2 BuscaBacktracking.cpp)
-target_link_libraries(busca2 casal)
-
-add_executable(busca3 BuscaLargura.cpp)
-target_link_libraries(busca3 casal)
-
-add_executable(busca4 BuscaProfundidade.cpp)
-target_link_libraries(busca4 casal)
-
-
-add_executable(performance performance.cpp)
-target_link_libraries(performance casal)

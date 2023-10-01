@@ -32,6 +32,8 @@ string runAlgorithm(int algorithm, bool to_prune, vector<int> rules){
     int totalStates = gtree.getTotalStates();
     stringstream str;
 
+    if(algorithm==-1)
+        AIAlgorithm::manualSearch(gtree, depth);
     if(algorithm==0)
         AIAlgorithm::irrevocableSearch(gtree);
     else if(algorithm==1)
@@ -91,7 +93,7 @@ int main(int argc, char* argv[]) {
     int chosenRuleSet = 0;
     string outputPath = "output.csv";
 
-    while((opt = getopt(argc, argv, "t:ibldpr:")) != -1)
+    while((opt = getopt(argc, argv, "mt:ibldpr:")) != -1)
     {
         if(opt == 't') {
             performanceTest = true;
@@ -106,6 +108,9 @@ int main(int argc, char* argv[]) {
                 cout << "Regra escolhida inválida. Definindo valor padrão (0)." << endl;
                 chosenRuleSet = 0;
             }
+        }
+        else if(opt == 'm') {
+            algorithm = -1;
         }
         else if(opt == 'i') {
             algorithm = 0;
