@@ -30,8 +30,6 @@ int main(int argc, char* argv[]) {
     vector<int> homemCasalMulher{ 7,8,9,10,11,12,13,14,15,1,2,3,4,5,6 };
     vector<vector<int>> ruleSets{ crescente, decrescente, casalMulherHomem, casalHomemMulher, homemCasalMulher };
 
-    vector<int> chosenVector; // vetor que recebe a regra escolhida
-
     int opt;
     int algorithm = 0;
     int chosenRuleSet = 0;
