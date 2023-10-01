@@ -1,1 +1,0 @@
-/usr/bin/c++ -g CMakeFiles/casalCiumento.dir/main.cpp.o -o casalCiumento  libcasal.a libcasal.a 

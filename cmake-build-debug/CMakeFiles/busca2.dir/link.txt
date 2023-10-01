@@ -1,1 +1,0 @@
-/usr/bin/c++ -g CMakeFiles/busca2.dir/BuscaBacktracking.cpp.o -o busca2  libcasal.a 

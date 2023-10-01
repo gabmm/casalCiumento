@@ -1,2 +1,0 @@
-/usr/bin/ar qc libcasal.a CMakeFiles/casal.dir/src/AIAlgorithm.cc.o CMakeFiles/casal.dir/src/Boat.cc.o CMakeFiles/casal.dir/src/GTNode.cc.o CMakeFiles/casal.dir/src/GTree.cc.o CMakeFiles/casal.dir/src/Person.cc.o CMakeFiles/casal.dir/src/Scenario.cc.o
-/usr/bin/ranlib libcasal.a
