@@ -27,8 +27,8 @@ public:
 private:
     GTNode* root; //ponteiro para a raíz
     int stateCounter = 0; //contador de estados
-    void auxPrint(GTNode* node); //funcao auxiliar a Print
-    void auxSearch(Scenario sc, GTNode* node, int &flag); //funcao auxiliar a Search
+    void auxPrint(GTNode* node, int& num_node); //funcao auxiliar a Print
+    void auxSearch(Scenario sc, GTNode* node, int& flag); //funcao auxiliar a Search
     vector<int> rules; //vetor de sequencia de regras
 };
 

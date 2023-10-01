@@ -10,7 +10,7 @@ GTree::GTree(vector<int> rules) {
         cout << rules.at(i) << " ";
     cout << endl;
     Scenario scenario;
-    GTNode *node;
+    GTNode* node;
     node = this->Insert(scenario, nullptr, 0);
     this->root = node;
 }
@@ -19,7 +19,7 @@ GTree::~GTree() {
     this->clear(this->root);
 }
 
-GTNode* GTree::Insert(Scenario scenario, GTNode *parent, int selectedRule) {
+GTNode* GTree::Insert(Scenario scenario, GTNode* parent, int selectedRule) {
     this->stateCounter++;
     GTNode* node = new GTNode(scenario, parent, this->stateCounter, selectedRule);
     if (parent != nullptr)
@@ -37,12 +37,12 @@ bool GTree::Search(Scenario scenario) {
         return true;
 }
 
-void GTree::auxSearch(Scenario sc, GTNode *node, int &flag) {
+void GTree::auxSearch(Scenario sc, GTNode* node, int& flag) {
     if (node->isEqual(sc))
         flag = 1;
     else
         if (!node->isLeaf())
-            for(int i = 0; i < node->getChildren().size(); i++)
+            for (int i = 0; i < node->getChildren().size(); i++)
                 this->auxSearch(sc, node->getChildren().at(i), flag);
 }
 
@@ -52,24 +52,28 @@ GTNode* GTree::getRoot() {
 
 void GTree::print() {
     cout << "Imprimindo sequencia de estados e regras: ";
-    auxPrint(this->root);
+    int num_node = 1;
+    auxPrint(this->root, num_node);
+    cout << "Numero de nos: " << num_node << endl;
 }
 
-void GTree::auxPrint(GTNode *node) {
+void GTree::auxPrint(GTNode* node, int& num_node) {
     node->printState();
     if (!node->isLeaf())
-        for(int i = 0; i < node->getChildren().size(); i++)
-            auxPrint(node->getChildren().at(i));
+        for (int i = 0; i < node->getChildren().size(); i++) {
+            auxPrint(node->getChildren().at(i), num_node);
+            num_node++;
+        }
 }
 
-void GTree::clear(GTNode *node) {
+void GTree::clear(GTNode* node) {
     if (!node->isLeaf())
-        for(int i = 0; i < node->getChildren().size(); i++)
+        for (int i = 0; i < node->getChildren().size(); i++)
             clear(node->getChildren().at(i));
     delete node;
 }
 
-bool GTree::FindOnPath(Scenario scenario, GTNode *node) {
+bool GTree::FindOnPath(Scenario scenario, GTNode* node) {
     while (node != nullptr) //unico nó que tem como pai null é a raiz
     {
         if (node->isEqual(scenario))
@@ -80,25 +84,25 @@ bool GTree::FindOnPath(Scenario scenario, GTNode *node) {
     return false;
 }
 
-GTNode* GTree::RemoveLeaf(GTNode *node) {
-    if (!node->isLeaf()){
+GTNode* GTree::RemoveLeaf(GTNode* node) {
+    if (!node->isLeaf()) {
         //cout << "Nó não é folha. Impossível remover." << endl;
         return node;
     }
-    GTNode *p = node->getParent();
+    GTNode* p = node->getParent();
     p->removeChild(node);
     this->clear(node);
     this->stateCounter--;
     return p;
 }
 
-void GTree::updateQueue(GTNode *node) {
+void GTree::updateQueue(GTNode* node) {
     queue<int> q;
 
-    for (int i = 0; i < this->rules.size(); i++){
+    for (int i = 0; i < this->rules.size(); i++) {
         Scenario sc;
         sc.setState(node->getState());
-        if (sc.applyRule(this->rules.at(i))){
+        if (sc.applyRule(this->rules.at(i))) {
             //cout << "ENTRA NO APLICA RULE" << endl;
             if (!this->FindOnPath(sc, node)) {
                 //cout << "ENTRA NO FIND PATH" << endl;

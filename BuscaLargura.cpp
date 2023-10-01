@@ -11,23 +11,20 @@
 
 using namespace std;
 
-bool prune(queue<GTNode*> closedAux, GTNode* node) { // Verifica se pode fazer a poda
-    while (!closedAux.empty()) //Pecorre o vetor fechado e compara com o node
-    {
-        if (closedAux.front()->isEqual(node->getState()))
-            return true;
-        closedAux.pop();
-    }
-    return false;
-}
 
-
-int main() {
-
-
+int main(int argc, char const* argv[]) {
+    // argv[1] -> Se ira realizar poda (1) ou não (0)
+    // argv[2] -> Regras a ser escolhida (1) crescente, (2) decrescente,
+    //              (3) casalMulherHomem, (4)casalHomemMulher e (5) homemCasalMulher [default = crescente]
     Metrics p;
     Setup_metrics(&p);
     auto t0 = std::chrono::high_resolution_clock::now();
+
+    bool to_prune = false;
+    string strRegras;
+    if (argv[1] && *argv[1] != '0') {
+        to_prune = true;
+    }
 
     /* vetores determinam a escolha da estrategia a partir de uma sequencia de regras conforme a tabela:
     Regra 1: [f1 f2] Regra 2: [f1 f3] Regra 3: [f2 f3]
@@ -42,8 +39,29 @@ int main() {
     vector<int> casalHomemMulher{ 13,14,15,7,8,9,10,11,12,1,2,3,4,5,6 };
     vector<int> homemCasalMulher{ 7,8,9,10,11,12,13,14,15,1,2,3,4,5,6 };
     vector<int> chosenVector; // vetor que recebe a regra escolhida
+    if (argv[2])
+        switch (*argv[2]) {
+        case '1':
+            chosenVector = crescente; //escolhe estrategia de busca
+            break;
+        case '2':
+            chosenVector = decrescente; //escolhe estrategia de busca
+            break;
+        case '3':
+            chosenVector = casalMulherHomem; //escolhe estrategia de busca
+            break;
+        case '4':
+            chosenVector = casalHomemMulher; //escolhe estrategia de busca
+            break;
+        case '5':
+            chosenVector = homemCasalMulher; //escolhe estrategia de busca
+            break;
+        default:
+            chosenVector = crescente; //escolhe estrategia de busca
+        }
+    else
+        chosenVector = crescente;
 
-    chosenVector = crescente; //escolhe estrategia de busca
     GTree gtree(chosenVector); //inicializa arvore
     GTNode* node = gtree.getRoot(); //ponteiro pro ultimo estado, nesse caso o estado inicial
 
@@ -73,16 +91,18 @@ int main() {
             state.setState(first->getState());   // seta ele para que seja igual ao atual
             int rule = first->getQueue().front();       //copia a primeira regra da fila de regras possiveis
             state.applyRule(rule);
-            if (!gtree.FindOnPath(state, node)) { //se o estado que a travessia gerou nao se repetiu                   //aplica a regra no cenário criado
-                node = gtree.Insert(state, first, rule);    //insere o nó no cenario com o pai first;
-                if (prune(closed, node)) {  // realiza a poda
-                    GTNode* p; //cria ponteiro
-                    p = node; //aponta para o estado atual
-                    node = p->getParent(); //ponteiro atual aponta para o pai do estado atual; Ou seja, novo estado atual é o pai
-                    gtree.RemoveLeaf(p); //remove o estado antigo (filho) usando o ponteiro criado
-                }
-                else
+
+            if (to_prune) {
+                if (!gtree.Search(state)) {
+                    node = gtree.Insert(state, first, rule);    //insere o nó no cenario com o pai first;
                     open.push(node);
+                }
+            }
+            else {
+                if (!gtree.FindOnPath(state, node)) { //se o estado que a travessia gerou nao se repetiu                   //aplica a regra no cenário criado
+                    node = gtree.Insert(state, first, rule);    //insere o nó no cenario com o pai first;
+                    open.push(node);
+                }
             }
             first->popRule();                           //remove a regra usada
         }
@@ -96,6 +116,9 @@ int main() {
         open.pop();         // remove o no visitado da fila de abertos
     }
 
+
+
+
     GTNode* parent = first;
     while (parent != nullptr)
     {
@@ -104,13 +127,20 @@ int main() {
         depth++;
     }
 
-    cout << "Profundidade " << depth << endl;
+    if (to_prune)
+        cout << "Largura com poda: " << depth << endl;
+    else
+        cout << "Largura sem poda: " << depth << endl;
     cout << "SOLUÇÃO ENCONTRADO COM PASSAGEM POR " << gtree.getTotalStates() << " estados diferentes." << endl;
-    auto t1 = std::chrono::high_resolution_clock::now();
 
+
+    auto t1 = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> delta = t1 - t0;
     Set_CPUtime(&p, delta.count());
     Print_metrics(&p);
     cout << endl;
+
+    gtree.print();
+
     return 0;
 }
