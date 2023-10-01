@@ -6,7 +6,6 @@
 **UFJF - Faculdade de Ciência da Computação**
 
 
-
 ## Problema: 
 
 Três casais ficaram ilhados em um hotel quando passavam férias.
@@ -14,15 +13,6 @@ Há um barco que pode levar duas pessoas por viagem para uma margem segura.
 Entretanto, os maridos são ciumentos e não permitem que suas esposas fiquem sozinhas na presença de outros homens sem que eles próprios estejam presentes.
 Deve-se encontrar uma forma de atravessar as seis pessoas em segurança sem que os maridos fiquem zangados.
 
-## Funcionamento do código:
-
-### Executáveis
-
-*MAIN*
-- Manual. O usuário escolhe a regra a cada novo estado.
-
-*Busca Irrevogavel*
-- Usuário escolhe vetor que determina a sequência de regras a ser aplicada a cada novo estado. 
 
 ### Estrutura de classes:
 
@@ -36,6 +26,8 @@ Deve-se encontrar uma forma de atravessar as seis pessoas em segurança sem que 
 *GTREE*
 - Classe que representa a estrutura de dados reponsável por armazenar os estados (objetos tipo SCENARIO) em seus nós e descrever os caminhos tomados pelas diferentes buscas implementadas.
 
+*AIAlgorithm*
+- Classe com métodos estáticos que implementam as buscas.
 
 ### ROTINA DE TESTES:
 
@@ -60,37 +52,65 @@ Deve-se encontrar uma forma de atravessar as seis pessoas em segurança sem que 
 
 ---
 
-> Arquivos gerados após o build
+## Funcionamento do código
 
-| Nome | Descrição | Arquivo |
-| --- | --- | --- |
-| `casalCiumento` | Deixa o usuário escolher as regras através do teclado | main.cpp |
-| `busca1` | Realiza uma busca irrevogável | BuscaIrrevogavel.cpp |
-| `busca2` | Realiza uma busca Backtracking | BuscaBacktracking.cpp |
-| `busca3` | Realiza uma busca em largura  | BuscaLargura.cpp |
-| `busca4` | Realiza uma busca em profundidade | BuscaProfundidade.cpp |
+### Como compilar
 
-> Para as buscas busca3 e busca4, temos a seguinte estrutura:
+- gerado utilizando-se
+```
+$ make casalCiumento
+```
 
+### Como executar
+```
+$ ./casalCiumento <algoritmo>  [outras_opcoes]
+```
+A opção "algoritmo" deve ser uma das seguintes:
 
-## ./busca arg1 arg2 
-
-| Busca | Descrição | 
-| --- | --- | 
-| `busca3` | Realiza uma busca em largura  |
-| `busca4` | Realiza uma busca em profundidade | 
-
-| arg1 | Descrição | 
-| --- | ---  |
-| 0 | Realiza a busca sem usar a poda  |
-| 1 | Realiza a busca usando a poda |
+| Flag | Algoritmo                          | 
+  |------|------------------------------------|
+| `-m` | Execução manual através do teclado |
+| `-i` | Busca irrevogável                  |
+| `-b` | Busca Backtracking                 | 
+| `-l` | Busca em largura                   | 
+| `-d` | Busca em profundidade              | 
 
 
-| arg2 | Descrição | 
-| --- | ---  |
-| 1 | Realiza a busca usando a regra ``crescente``  |
-| 2 | Realiza a busca usando a regra ``decrescente``  |
-| 3 | Realiza a busca usando a regra ``casalMulherHomem``  |
-| 4 | Realiza a busca usando a regra ``casalHomemMulher``  |
-| 5 | Realiza a busca usando a regra ``homemCasalMulher``  |
+A opção "outras_opcoes" pode ser uma das seguintes:
+
+| Opção               | Função                                                                                                                                                                             |
+|---------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `-t <caminho>`      | Executa o algorimo indicado um núemro de vezes e cria arquivo no caminho indicado com os resultados. Caso `-t` seja passado sem o caminho, o arquivo será escrito em `output.csv`. |
+| `-p`                | Ativa a poda (quando aplicável). Desativado por padrão.                                                                                                                            |
+| `-r <ordem_regras>` | Define a ordem em que as regras serão aplicadas de acordo com a tabela a seguir. Por padrão é igual a 0.                                                                           |
+
+O parâmetro "ordem_regras" após a flag `-r` deve ser um dos seguintes:
+
+| Valor | Ordem das regras                   | 
+  |-------|------------------------------------|
+| `0`   | Ordem crescente                    |
+| `1`   | Ordem decrescente                  |
+| `2`   | Ordem casalMulherHomem             |
+| `3`   | Ordem casalHomemMulher             |
+| `4`   | Ordem homemCasalMulher             |
+
+
+### Exemplos de execução:
+
+- Executa a busca backtracking com a ordem de regras decrescente:
+   ```
+   $ ./casalCiumento -b -r 1
+   ```
+
+- Executa o mesmo algoritmo em modo de teste com saída em output.csv:
+   ```
+   $ ./casalCiumento -b -r 1 -t output.csv
+   ```
+
+- Executa a busca em largura com a ordem de regras crescente e com a poda ativada:
+   ```
+   $ ./casalCiumento -l -r 0 -p
+   ```
+
+
 
