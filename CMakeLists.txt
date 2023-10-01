@@ -12,6 +12,4 @@ target_include_directories(casal PUBLIC ${PROJECT_SOURCE_DIR}/include)
 add_executable(casalCiumento main.cpp)
 target_link_libraries(casalCiumento casal)
 
-add_executable(manual manual.cpp)
-target_link_libraries(manual casal)
 
