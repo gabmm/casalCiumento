@@ -211,4 +211,7 @@ CMakeFiles/casalCiumento.dir/main.cpp.o
  /usr/include/c++/11/bits/parse_numbers.h
  /usr/include/c++/11/stack
  /usr/include/c++/11/bits/stl_stack.h
+ /usr/include/getopt.h
+ /usr/include/x86_64-linux-gnu/bits/getopt_core.h
+ /usr/include/x86_64-linux-gnu/bits/getopt_ext.h
 

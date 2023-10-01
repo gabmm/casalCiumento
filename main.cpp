@@ -10,6 +10,7 @@
 #include <queue>
 #include <chrono>
 #include <stack>
+#include <getopt.h>
 
 using namespace std;
 
@@ -224,63 +225,70 @@ void depthFirstSearch(GTree& gtree, bool to_prune, int &depth){
     }
 }
 
-int main(int argc, char const* argv[]) {
-
+int main(int argc, char* argv[]) {
     // argv[1] -> Se ira realizar poda (1) ou não (0)
-// argv[2] -> Regras a ser escolhida (1) crescente, (2) decrescente,
+    // argv[2] -> Regras a ser escolhida (1) crescente, (2) decrescente,
     //              (3) casalMulherHomem, (4)casalHomemMulher e (5) homemCasalMulher [default = crescente]
     Metrics p;
     Setup_metrics(&p);
     auto t0 = std::chrono::high_resolution_clock::now();
-
     bool to_prune = false;
-
-    if (argv[1] && *argv[1] != '0') {
-        to_prune = true;
-    }
-
-    /* vetores determinam a escolha da estrategia a partir de uma sequencia de regras conforme a tabela:
-    Regra 1: [f1 f2] Regra 2: [f1 f3] Regra 3: [f2 f3]
-    Regra 4: [f1 x] Regra 5: [f2 x] Regra 6: [f3 x]
-    Regra 7: [m1 m2] Regra 8: [m1 m3] Regra 9: [m2 m3]
-    Regra 10: [m1 x] Regra 11: [m2 x] Regra 12: [m3 x]
-    Regra 13: [f1 m1] Regra 14: [f2 m2] Regra 15: [f3 m3]*/
-
     vector<int> crescente{ 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15 };
     vector<int> decrescente{ 15,14,13,12,11,10,9,8,7,6,5,4,3,2,1 };
     vector<int> casalMulherHomem{ 13,14,15,1,2,3,4,5,6,7,8,9,10,11,12 };
     vector<int> casalHomemMulher{ 13,14,15,7,8,9,10,11,12,1,2,3,4,5,6 };
     vector<int> homemCasalMulher{ 7,8,9,10,11,12,13,14,15,1,2,3,4,5,6 };
+    vector<vector<int>> ruleSets{ crescente, decrescente, casalMulherHomem, casalHomemMulher, homemCasalMulher };
+
     vector<int> chosenVector; // vetor que recebe a regra escolhida
-    if (argv[2])
-        switch (*argv[2]) {
-            case '1':
-                chosenVector = crescente; //escolhe estrategia de busca
-                break;
-            case '2':
-                chosenVector = decrescente; //escolhe estrategia de busca
-                break;
-            case '3':
-                chosenVector = casalMulherHomem; //escolhe estrategia de busca
-                break;
-            case '4':
-                chosenVector = casalHomemMulher; //escolhe estrategia de busca
-                break;
-            case '5':
-                chosenVector = homemCasalMulher; //escolhe estrategia de busca
-                break;
-            default:
-                chosenVector = crescente; //escolhe estrategia de busca
+
+    int opt;
+    int algorithm = 0;
+    int chosenRuleSet = 0;
+
+    while((opt = getopt(argc, argv, "ibldpr:")) != -1)
+    {
+        if(opt == 'p') {
+            to_prune = true;
         }
-    else
-        chosenVector = crescente;
+        else if(opt == 'r') {
+            chosenRuleSet = atoi(optarg);
+            if(chosenRuleSet < 0 || chosenRuleSet > ruleSets.size()){
+                cout << "Regra escolhida inválida. Definindo valor padrão (0)." << endl;
+                chosenRuleSet = 0;
+            }
+        }
+        else if(opt == 'i') {
+            algorithm = 0;
+        }
+        else if(opt == 'b') {
+            algorithm = 1;
+        }
+        else if(opt == 'l') {
+            algorithm = 2;
+        }
+        else if(opt == 'd') {
+            algorithm = 3;
+        }
+    }
+
+    cout << "Regra escolhida: " << chosenRuleSet << endl;
+    cout << "Poda: " << boolalpha << to_prune << endl;
+    cout << "Algoritmo: " << algorithm << endl;
 
     int depth = 0;
-    GTree gtree(chosenVector); //inicializa arvore
-    depthFirstSearch(gtree, to_prune, depth); //realiza busca em profundidade
+    GTree gtree(ruleSets[chosenRuleSet]); //inicializa arvore
+
+    if(algorithm==0)
+        irrevocableSearch(gtree);
+    else if(algorithm==1)
+        backtrackingSearch(gtree);
+    else if(algorithm==2)
+        breadthFirstSearch(gtree, to_prune, depth);
+    else if(algorithm==3)
+        depthFirstSearch(gtree, to_prune, depth);
 
     cout << "Profundidade (poda = " << boolalpha <<to_prune<<"): " << depth << endl;
-
     cout << "SOLUÇÃO ENCONTRADO COM PASSAGEM POR " << gtree.getTotalStates() << " estados diferentes." << endl;
     auto t1 = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> delta = t1 - t0;

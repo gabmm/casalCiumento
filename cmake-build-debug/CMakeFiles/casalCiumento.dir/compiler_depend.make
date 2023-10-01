@@ -209,8 +209,13 @@ CMakeFiles/casalCiumento.dir/main.cpp.o: /home/patrick/Desktop/Projects/casalCiu
   /usr/include/c++/11/ctime \
   /usr/include/c++/11/bits/parse_numbers.h \
   /usr/include/c++/11/stack \
-  /usr/include/c++/11/bits/stl_stack.h
+  /usr/include/c++/11/bits/stl_stack.h \
+  /usr/include/getopt.h \
+  /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
+  /usr/include/x86_64-linux-gnu/bits/getopt_ext.h
 
+
+/usr/include/x86_64-linux-gnu/bits/getopt_core.h:
 
 /usr/include/c++/11/ctime:
 
@@ -277,6 +282,8 @@ CMakeFiles/casalCiumento.dir/main.cpp.o: /home/patrick/Desktop/Projects/casalCiu
 /usr/include/c++/11/debug/debug.h:
 
 /usr/include/x86_64-linux-gnu/bits/stdint-intn.h:
+
+/usr/include/getopt.h:
 
 /usr/include/c++/11/debug/assertions.h:
 
@@ -469,6 +476,8 @@ CMakeFiles/casalCiumento.dir/main.cpp.o: /home/patrick/Desktop/Projects/casalCiu
 /usr/include/c++/11/cctype:
 
 /usr/include/sched.h:
+
+/usr/include/x86_64-linux-gnu/bits/getopt_ext.h:
 
 /usr/include/c++/11/chrono:
 

@@ -167,4 +167,6 @@ CMakeFiles/casalCiumento.dir/main.cpp.o: \
  /usr/include/c++/11/chrono /usr/include/c++/11/ratio \
  /usr/include/c++/11/limits /usr/include/c++/11/ctime \
  /usr/include/c++/11/bits/parse_numbers.h /usr/include/c++/11/stack \
- /usr/include/c++/11/bits/stl_stack.h
+ /usr/include/c++/11/bits/stl_stack.h /usr/include/getopt.h \
+ /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
+ /usr/include/x86_64-linux-gnu/bits/getopt_ext.h
