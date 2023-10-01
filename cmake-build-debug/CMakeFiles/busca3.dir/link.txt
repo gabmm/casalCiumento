@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/busca3.dir/BuscaLargura.cpp.o -o busca3  libcasal.a 

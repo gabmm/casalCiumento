@@ -127,3 +127,7 @@ int GTree::getTotalStates() {
     return this->stateCounter;
 }
 
+vector<int> GTree::getRules() {
+    return this->rules;
+}
+

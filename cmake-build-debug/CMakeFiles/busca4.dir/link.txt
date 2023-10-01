@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/busca4.dir/BuscaProfundidade.cpp.o -o busca4  libcasal.a 

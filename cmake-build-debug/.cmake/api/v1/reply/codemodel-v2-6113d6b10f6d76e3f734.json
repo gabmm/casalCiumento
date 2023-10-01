@@ -1,0 +1,123 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10.2"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "casalCiumento",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "busca1::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-busca1-Debug-86c1adb2f202034de7b7.json",
+					"name" : "busca1",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "busca2::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-busca2-Debug-1f3993be23ca2a3e588a.json",
+					"name" : "busca2",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "busca3::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-busca3-Debug-c0a92e2d695dd49f7585.json",
+					"name" : "busca3",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "busca4::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-busca4-Debug-e0adb44c36ac1e0e386e.json",
+					"name" : "busca4",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "casal::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-casal-Debug-4f2896d8928b25e532c0.json",
+					"name" : "casal",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "casalCiumento::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-casalCiumento-Debug-1522ed5f011ef9ef75f1.json",
+					"name" : "casalCiumento",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "maunal::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-maunal-Debug-d72572cc71b9aafb49e9.json",
+					"name" : "maunal",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "performance::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-performance-Debug-513c45fcc145351bffb5.json",
+					"name" : "performance",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug",
+		"source" : "/home/patrick/Desktop/Projects/casalCiumento"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 5
+	}
+}

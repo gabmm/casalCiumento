@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/manual.dir/manual.cpp.o -o manual 

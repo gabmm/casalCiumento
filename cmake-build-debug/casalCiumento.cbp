@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="casalCiumento"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="casal">
+				<Option output="/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/libcasal.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/patrick/Desktop/Projects/casalCiumento/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 casal"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="casal/fast">
+				<Option output="/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/libcasal.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/patrick/Desktop/Projects/casalCiumento/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 casal/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="casalCiumento">
+				<Option output="/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/casalCiumento" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/patrick/Desktop/Projects/casalCiumento/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 casalCiumento"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="casalCiumento/fast">
+				<Option output="/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/casalCiumento" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/patrick/Desktop/Projects/casalCiumento/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 casalCiumento/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="maunal">
+				<Option output="/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/maunal" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/patrick/Desktop/Projects/casalCiumento/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 maunal"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="maunal/fast">
+				<Option output="/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/maunal" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/patrick/Desktop/Projects/casalCiumento/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 maunal/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="busca1">
+				<Option output="/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/busca1" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/patrick/Desktop/Projects/casalCiumento/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 busca1"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="busca1/fast">
+				<Option output="/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/busca1" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/patrick/Desktop/Projects/casalCiumento/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 busca1/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="busca2">
+				<Option output="/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/busca2" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/patrick/Desktop/Projects/casalCiumento/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 busca2"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="busca2/fast">
+				<Option output="/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/busca2" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/patrick/Desktop/Projects/casalCiumento/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 busca2/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="busca3">
+				<Option output="/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/busca3" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/patrick/Desktop/Projects/casalCiumento/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 busca3"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="busca3/fast">
+				<Option output="/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/busca3" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/patrick/Desktop/Projects/casalCiumento/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 busca3/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="busca4">
+				<Option output="/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/busca4" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/patrick/Desktop/Projects/casalCiumento/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 busca4"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="busca4/fast">
+				<Option output="/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/busca4" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/patrick/Desktop/Projects/casalCiumento/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 busca4/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="performance">
+				<Option output="/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/performance" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/patrick/Desktop/Projects/casalCiumento/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 performance"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="performance/fast">
+				<Option output="/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/performance" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/patrick/Desktop/Projects/casalCiumento/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 performance/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/patrick/Desktop/Projects/casalCiumento/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/patrick/Desktop/Projects/casalCiumento/BuscaBacktracking.cpp">
+			<Option target="busca2"/>
+		</Unit>
+		<Unit filename="/home/patrick/Desktop/Projects/casalCiumento/BuscaIrrevogavel.cpp">
+			<Option target="busca1"/>
+		</Unit>
+		<Unit filename="/home/patrick/Desktop/Projects/casalCiumento/BuscaLargura.cpp">
+			<Option target="busca3"/>
+		</Unit>
+		<Unit filename="/home/patrick/Desktop/Projects/casalCiumento/BuscaProfundidade.cpp">
+			<Option target="busca4"/>
+		</Unit>
+		<Unit filename="/home/patrick/Desktop/Projects/casalCiumento/main.cpp">
+			<Option target="casalCiumento"/>
+		</Unit>
+		<Unit filename="/home/patrick/Desktop/Projects/casalCiumento/manual.cpp">
+			<Option target="maunal"/>
+		</Unit>
+		<Unit filename="/home/patrick/Desktop/Projects/casalCiumento/performance.cpp">
+			<Option target="performance"/>
+		</Unit>
+		<Unit filename="/home/patrick/Desktop/Projects/casalCiumento/src/Boat.cc">
+			<Option target="casal"/>
+		</Unit>
+		<Unit filename="/home/patrick/Desktop/Projects/casalCiumento/src/GTNode.cc">
+			<Option target="casal"/>
+		</Unit>
+		<Unit filename="/home/patrick/Desktop/Projects/casalCiumento/src/GTree.cc">
+			<Option target="casal"/>
+		</Unit>
+		<Unit filename="/home/patrick/Desktop/Projects/casalCiumento/src/Person.cc">
+			<Option target="casal"/>
+		</Unit>
+		<Unit filename="/home/patrick/Desktop/Projects/casalCiumento/src/Scenario.cc">
+			<Option target="casal"/>
+		</Unit>
+		<Unit filename="/home/patrick/Desktop/Projects/casalCiumento/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
