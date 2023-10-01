@@ -43,11 +43,11 @@ void backtrackingSearch(GTree &gtree){
             node = p; //ponteiro atual é o novo nó
         }
 
-        if (node->getState().isEveryoneSafe())
+      /*  if (node->getState().isEveryoneSafe())
         {
             cout << "PARABÉNS! Estão todos a salvo!" << endl;
             cout << "SOLUÇÃO ENCONTRADO COM PASSAGEM POR " << gtree.getTotalStates() << " estados diferentes." << endl;
-        }
+        }*/
     }
 
 
