@@ -1,5 +1,5 @@
-CMakeFiles/casalCiumento.dir/main.cpp.o: \
- /home/patrick/Desktop/Projects/casalCiumento/main.cpp \
+CMakeFiles/busca3.dir/BuscaLargura.cpp.o: \
+ /home/patrick/Desktop/Projects/casalCiumento/BuscaLargura.cpp \
  /usr/include/stdc-predef.h /usr/include/c++/11/iostream \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -166,5 +166,4 @@ CMakeFiles/casalCiumento.dir/main.cpp.o: \
  /home/patrick/Desktop/Projects/casalCiumento/include/Metrics.h \
  /usr/include/c++/11/chrono /usr/include/c++/11/ratio \
  /usr/include/c++/11/limits /usr/include/c++/11/ctime \
- /usr/include/c++/11/bits/parse_numbers.h /usr/include/c++/11/stack \
- /usr/include/c++/11/bits/stl_stack.h
+ /usr/include/c++/11/bits/parse_numbers.h

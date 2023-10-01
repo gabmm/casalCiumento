@@ -203,4 +203,12 @@ CMakeFiles/casalCiumento.dir/main.cpp.o
  /home/patrick/Desktop/Projects/casalCiumento/include/Scenario.h
  /home/patrick/Desktop/Projects/casalCiumento/include/GTNode.h
  /home/patrick/Desktop/Projects/casalCiumento/include/GTNode.h
+ /home/patrick/Desktop/Projects/casalCiumento/include/Metrics.h
+ /usr/include/c++/11/chrono
+ /usr/include/c++/11/ratio
+ /usr/include/c++/11/limits
+ /usr/include/c++/11/ctime
+ /usr/include/c++/11/bits/parse_numbers.h
+ /usr/include/c++/11/stack
+ /usr/include/c++/11/bits/stl_stack.h
 
