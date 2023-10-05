@@ -23,6 +23,7 @@ public:
     void updateQueue(GTNode* node); //atualiza a fila de regras aplicáveis ao node
     vector<int> getRules(); //retorna o vetor de sequencia de regra escolhido
     int getTotalStates(); // retorna o total de estados visitados até agora (nao confundir com passos)
+    void printPath(GTNode* node, int &depth); //imprime o caminho solucao
 
 private:
     GTNode* root; //ponteiro para a raíz

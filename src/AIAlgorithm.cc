@@ -104,6 +104,11 @@ void AIAlgorithm::breadthFirstSearch(GTree& gtree, bool to_prune, int &depth){
     {
         first = open.front();               // recebe sempre o primeiro elemento da fila de abertos
 
+        if (first->getState().isEveryoneSafe()) { // verifica se o no que acabou de ser visitado é a solução
+            cout << endl << "PARABÉNS! Estão todos a salvo. Alcançado estado objetivo." << endl;
+            break;
+        }
+
         // first->printState();                // imprime estado atual
         if (open.empty()) {
             cout << endl << "ERRO! Não foi encontrada a solução." << endl;
@@ -130,23 +135,13 @@ void AIAlgorithm::breadthFirstSearch(GTree& gtree, bool to_prune, int &depth){
             }
             first->popRule();                           //remove a regra usada
         }
-        if (first->getState().isEveryoneSafe()) { // verifica se o no que acabou de ser visitado é a solução
-            cout << endl << "PARABÉNS! Estão todos a salvo. Alcançado estado objetivo." << endl;
-            break;
-        }
 
         //caso não haja mais regras para aplicar e não é a solução então significa que temos de mudar o nosso first
         closed.push(first); // copia o no visitado de aberto para fechado
         open.pop();         // remove o no visitado da fila de abertos
     }
 
-    GTNode* parent = first;
-    while (parent != nullptr)
-    {
-        parent->getState().print();
-        parent = parent->getParent();
-        depth++;
-    }
+    gtree.printPath(first, depth);
 }
 
 void AIAlgorithm::depthFirstSearch(GTree& gtree, bool to_prune, int &depth){
@@ -166,13 +161,16 @@ void AIAlgorithm::depthFirstSearch(GTree& gtree, bool to_prune, int &depth){
     {
         top = open.top();                   // recebe sempre o primeiro elemento da pilha de abertos
 
+        if (top->getState().isEveryoneSafe()) { // verifica se o no que acabou de ser visitado é a solução
+            cout << endl << "PARABÉNS! Estão todos a salvo. Alcançado estado objetivo." << endl;
+            break;
+        }
+
         // top->printState();                // imprime estado atual
         if (open.empty()) {
             cout << endl << "ERRO! Não foi encontrada a solução." << endl;
             break;
         }
-
-
 
         //caso não haja mais regras para aplicar e não é a solução então significa que temos de mudar o nosso first
 
@@ -200,20 +198,8 @@ void AIAlgorithm::depthFirstSearch(GTree& gtree, bool to_prune, int &depth){
             top->popRule();
         }
 
-        if (top->getState().isEveryoneSafe()) { // verifica se o no que acabou de ser visitado é a solução
-            cout << endl << "PARABÉNS! Estão todos a salvo. Alcançado estado objetivo." << endl;
-            break;
-        }
-
     }
-
-    GTNode* parent = open.top();
-    while (parent != nullptr)
-    {
-        parent->getState().print();
-        parent = parent->getParent();
-        depth++;
-    }
+    gtree.printPath(top, depth);
 }
 
 void AIAlgorithm::manualSearch(GTree& gtree, int &depth){
@@ -269,11 +255,5 @@ void AIAlgorithm::manualSearch(GTree& gtree, int &depth){
 
     cout << endl << "Parabéns, estão todos a salvo!" << endl;
 
-    GTNode* parent = node;
-    while (parent != nullptr)
-    {
-        parent->getState().print();
-        parent = parent->getParent();
-        depth++;
-    }
+    gtree.printPath(node, depth);
 }

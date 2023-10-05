@@ -9,6 +9,7 @@
 #include <sstream>
 #include <iomanip>
 #include <fstream>
+#include <algorithm>
 
 using namespace std;
 
@@ -122,6 +123,7 @@ int main(int argc, char* argv[]) {
             algorithm = 2;
         }
         else if(opt == 'd') {
+            //reverse(ruleSets[chosenRuleSet].begin(), ruleSets[chosenRuleSet].end());
             algorithm = 3;
         }
     }

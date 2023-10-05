@@ -131,3 +131,13 @@ vector<int> GTree::getRules() {
     return this->rules;
 }
 
+void GTree::printPath(GTNode* node, int &depth) {
+    while (node != nullptr)
+    {
+        node->getState().print();
+        node = node->getParent();
+        depth++;
+    }
+}
+
+
