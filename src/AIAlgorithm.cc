@@ -277,3 +277,66 @@ void AIAlgorithm::manualSearch(GTree& gtree, int &depth){
         depth++;
     }
 }
+
+void AIAlgorithm::orderedSearch(GTree &gtree, bool to_prune, int &depth) {
+    GTNode* node = gtree.getRoot(); //ponteiro pro ultimo estado, nesse caso o estado inicial
+
+    cout << "Busca em largura " << endl;
+    gtree.print();
+
+    queue<GTNode*> open; // Fila dos abertos
+    //queue<int> empty; // Fila dos abertos
+    queue<GTNode*> closed; // Fila dos fechados
+    open.push(node); // Adicionar a raiz no aberto
+    GTNode* first;
+
+    //unsigned int depth = 0;
+
+    while (true)
+    {
+        first = open.front();               // recebe sempre o primeiro elemento da fila de abertos
+
+        // first->printState();                // imprime estado atual
+        if (open.empty()) {
+            cout << endl << "ERRO! Não foi encontrada a solução." << endl;
+            break;
+        }
+        while (!first->getQueue().empty())  // Enquanto a lista de regras não for vazia vou aplicar todas as regras possiveis
+        {
+            Scenario state;                     //cria cenario inicial
+            state.setState(first->getState());   // seta ele para que seja igual ao atual
+            int rule = first->getQueue().front();       //copia a primeira regra da fila de regras possiveis
+            state.applyRule(rule);
+
+            if (to_prune) {
+                if (!gtree.Search(state)) {
+                    node = gtree.Insert(state, first, rule);    //insere o nó no cenario com o pai first;
+                    open.push(node);
+                }
+            }
+            else {
+                if (!gtree.FindOnPath(state, node)) { //se o estado que a travessia gerou nao se repetiu                   //aplica a regra no cenário criado
+                    node = gtree.Insert(state, first, rule);    //insere o nó no cenario com o pai first;
+                    open.push(node);
+                }
+            }
+            first->popRule();                           //remove a regra usada
+        }
+        if (first->getState().isEveryoneSafe()) { // verifica se o no que acabou de ser visitado é a solução
+            cout << endl << "PARABÉNS! Estão todos a salvo. Alcançado estado objetivo." << endl;
+            break;
+        }
+
+        //caso não haja mais regras para aplicar e não é a solução então significa que temos de mudar o nosso first
+        closed.push(first); // copia o no visitado de aberto para fechado
+        open.pop();         // remove o no visitado da fila de abertos
+    }
+
+    GTNode* parent = first;
+    while (parent != nullptr)
+    {
+        parent->getState().print();
+        parent = parent->getParent();
+        depth++;
+    }
+}

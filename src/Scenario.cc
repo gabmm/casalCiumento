@@ -31,6 +31,40 @@ Scenario::Scenario() {
     this->iterCounter = 0;
 }
 
+Scenario::Scenario(int couple1Weight, int couple2Weight, int couple3Weight) {
+    this->f1  = new Person('f');
+    this->f2  = new Person('f');
+    this->f3  = new Person('f');
+    this->m1  = new Person('m');
+    this->m2  = new Person('m');
+    this->m3  = new Person('m');
+
+    this->f1->setName("f1");
+    this->f2->setName("f2");
+    this->f3->setName("f3");
+    this->m1->setName("m1");
+    this->m2->setName("m2");
+    this->m3->setName("m3");
+
+    this->f1->setMarriedTo(m1);
+    this->m1->setMarriedTo(f1);
+    this->m2->setMarriedTo(f2);
+    this->f2->setMarriedTo(m2);
+    this->m3->setMarriedTo(f3);
+    this->f3->setMarriedTo(m3);
+
+    this->f1->setWeight(couple1Weight);
+    this->m1->setWeight(couple1Weight);
+    this->f2->setWeight(couple2Weight);
+    this->m2->setWeight(couple2Weight);
+    this->f3->setWeight(couple3Weight);
+    this->m3->setWeight(couple3Weight);
+
+    this->boat = new Boat();
+
+    this->iterCounter = 0;
+}
+
 Scenario::~Scenario() {
 }
 

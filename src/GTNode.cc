@@ -91,4 +91,12 @@ void GTNode::removeChild(GTNode *child) {
     {
         //cout << "filho nao encontrado" << endl;
     }
+}
+
+int GTNode::getWeight() const {
+    return weight;
+}
+
+void GTNode::setWeight(int weight) {
+    GTNode::weight = weight;
 };

@@ -13,6 +13,7 @@
 class Scenario {
 public:
     Scenario(); //construtor
+    Scenario(int couple1Weight, int couple2Weight, int couple3Weight);
     ~Scenario(); //destrutor
     Person* getPerson(string person); //retorna pessoa pelo nome EX.: "f1" para Mulher 1
     void print(); //imprime estado
@@ -24,7 +25,7 @@ public:
     bool isThereOtherMale(Person *wife, bool margin, Person *guest); // confere se existem outros homens na margem
     bool isAllowed(Person *p, Person *guest); // confere se a pessoa pode atravessar
     bool isThereWifeNoHusband(Person *husband, bool margin, Person *guest); // confere se existem esposas sem maridos na margem
-    void printCheck(); //impressão pra testes (nao mais usado)
+    void printCheck(); //impressão para testes (nao mais usado)
     bool operator == (Scenario &sc); //se a margem de todas as pessoas for a mesma, entao temos estados iguais
     void setState(Scenario state); //copia o state para o estado que o chama
     bool applyRule(int rule); //aplica a regra
