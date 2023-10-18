@@ -4,6 +4,7 @@
 
 #include "AIAlgorithm.h"
 #include <stack>
+#include <deque>
 
 void AIAlgorithm::backtrackingSearch(GTree &gtree){
 
@@ -278,20 +279,32 @@ void AIAlgorithm::manualSearch(GTree& gtree, int &depth){
     }
 }
 
+void orderedInsert(deque<GTNode*> &deque, GTNode* node){
+    //insert node into deque ordered by cost
+    bool inserted = false;
+    for (auto it = deque.begin(); it != deque.end(); it++){
+        if (node->getWeight() < (*it)->getWeight()) {
+            deque.insert(it, node);
+            inserted = true;
+            break;
+        }
+    }
+    if (!inserted) deque.push_back(node);
+}
+
 void AIAlgorithm::orderedSearch(GTree &gtree, bool to_prune, int &depth) {
     GTNode* node = gtree.getRoot(); //ponteiro pro ultimo estado, nesse caso o estado inicial
 
-    cout << "Busca em largura " << endl;
+    cout << "Busca ordenada " << endl;
     gtree.print();
 
-    queue<GTNode*> open; // Fila dos abertos
+    deque<GTNode*> open; // Fila dos abertos
     //queue<int> empty; // Fila dos abertos
     queue<GTNode*> closed; // Fila dos fechados
-    open.push(node); // Adicionar a raiz no aberto
+    open.push_back(node); // Adicionar a raiz no aberto
     GTNode* first;
 
     //unsigned int depth = 0;
-
     while (true)
     {
         first = open.front();               // recebe sempre o primeiro elemento da fila de abertos
@@ -311,13 +324,16 @@ void AIAlgorithm::orderedSearch(GTree &gtree, bool to_prune, int &depth) {
             if (to_prune) {
                 if (!gtree.Search(state)) {
                     node = gtree.Insert(state, first, rule);    //insere o nó no cenario com o pai first;
-                    open.push(node);
+                    //open.push_back(node);
+                    orderedInsert(open, node);
                 }
             }
             else {
                 if (!gtree.FindOnPath(state, node)) { //se o estado que a travessia gerou nao se repetiu                   //aplica a regra no cenário criado
                     node = gtree.Insert(state, first, rule);    //insere o nó no cenario com o pai first;
-                    open.push(node);
+                    //open.push_back(node);
+                    orderedInsert(open, node);
+
                 }
             }
             first->popRule();                           //remove a regra usada
@@ -329,7 +345,7 @@ void AIAlgorithm::orderedSearch(GTree &gtree, bool to_prune, int &depth) {
 
         //caso não haja mais regras para aplicar e não é a solução então significa que temos de mudar o nosso first
         closed.push(first); // copia o no visitado de aberto para fechado
-        open.pop();         // remove o no visitado da fila de abertos
+        open.pop_front();         // remove o no visitado da fila de abertos
     }
 
     GTNode* parent = first;

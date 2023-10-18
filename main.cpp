@@ -42,6 +42,8 @@ string runAlgorithm(int algorithm, bool to_prune, vector<int> rules){
         AIAlgorithm::breadthFirstSearch(gtree, to_prune, depth);
     else if(algorithm==3)
         AIAlgorithm::depthFirstSearch(gtree, to_prune, depth);
+    else if(algorithm==4)
+        AIAlgorithm::orderedSearch(gtree, to_prune, depth);
 
     cout << "Profundidade (poda = " << boolalpha <<to_prune<<"): " << depth << endl;
     cout << "SOLUÇÃO ENCONTRADO COM PASSAGEM POR " << gtree.getTotalStates() << " estados diferentes." << endl;
@@ -93,7 +95,7 @@ int main(int argc, char* argv[]) {
     int chosenRuleSet = 0;
     string outputPath = "output.csv";
 
-    while((opt = getopt(argc, argv, "mt:ibldpr:")) != -1)
+    while((opt = getopt(argc, argv, "mt:ibldpor:")) != -1)
     {
         if(opt == 't') {
             performanceTest = true;
@@ -124,15 +126,18 @@ int main(int argc, char* argv[]) {
         else if(opt == 'd') {
             algorithm = 3;
         }
+        else if(opt == 'o') {
+            algorithm = 4;
+        }
     }
 
     cout << "Regra escolhida: " << chosenRuleSet << endl;
     cout << "Poda: " << boolalpha << to_prune << endl;
     cout << "Algoritmo: " << algorithm << endl;
 
-    if(performanceTest){
+    if (performanceTest) {
         runPerformanceTest(algorithm, to_prune, ruleSets[chosenRuleSet], outputPath);
-    }else{
+    } else {
         runAlgorithm(algorithm, to_prune, ruleSets[chosenRuleSet]);
     }
 

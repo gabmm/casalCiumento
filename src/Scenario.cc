@@ -375,6 +375,58 @@ bool Scenario::applyRule(int rule) {
     }
 }
 
+int Scenario::getRuleCost(int rule) {
+    switch(rule) {
+        case 1:
+            return 3;
+            break;
+        case 2:
+            return 4;
+            break;
+        case 3:
+            return 5;
+            break;
+        case 4:
+            return 1;
+            break;
+        case 5:
+            return 2;
+            break;
+        case 6:
+            return 3;
+            break;
+        case 7:
+            return 3;
+            break;
+        case 8:
+            return 4;
+            break;
+        case 9:
+            return 5;
+            break;
+        case 10:
+            return 1;
+            break;
+        case 11:
+            return 2;
+            break;
+        case 12:
+            return 3;
+            break;
+        case 13:
+            return 2;
+            break;
+        case 14:
+            return 4;
+            break;
+        case 15:
+            return 6;
+            break;
+        default:
+            break;
+    }
+}
+
 bool Scenario::canApply(int rule) {
     switch(rule) {
         case 1:
