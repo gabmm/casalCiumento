@@ -24,6 +24,8 @@ public:
     void setQueue(queue<int> q); //seta a fila de possiveis regras
     void removeChild(GTNode* child); //se child esta no vetor de filhos, remove-o de lá
     void popRule();//pula uma regra
+    int getWeight() const;
+    void setWeight(int weight);
 
 protected:
     Scenario state; //key
@@ -32,6 +34,7 @@ protected:
     int stateNumber; //numero do estado atual (sequencial)
     int selectedRule; //regra escolhida para gerar o estado atual
     queue<int> applicableRules; //fila que representa as possiveis regras. Leva em consideracao tanto as regras do problema quanto a possibilidade de loops
+    int weight;
 };
 
 #endif //CASALCIUMENTO_GTNODE_H

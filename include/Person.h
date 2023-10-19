@@ -25,12 +25,15 @@ public:
     void changeMargin(); //troca a margem (de hotel para safe e vice-versa)
     string getName(); //retorna o nome (sempre será f ou M + 1, 2 ou 3)
     void setName(string name); //seta o nome
+    int getWeight(); // retorna o peso da pessoa no contexto de árvore de busca
+    void setWeight(int w); // atribui o peso da pessoa
 
 private:
     string name;
     char sex;
     string place;
     Person *marriedTo; //ponteiro para o esposo(a)
+    int weight;
 };
 
 

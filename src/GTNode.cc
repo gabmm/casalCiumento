@@ -8,6 +8,11 @@ GTNode::GTNode(Scenario state, GTNode* parent, int stateNumber, int ruleNumber) 
     this->parent = parent;
     this->stateNumber = stateNumber;
     this->selectedRule = ruleNumber;
+    this->weight = 0;
+
+    if(parent != nullptr){
+        this->weight = parent->getWeight() + state.getRuleCost(ruleNumber);
+    }
 }
 
 GTNode::~GTNode() {
@@ -91,4 +96,12 @@ void GTNode::removeChild(GTNode *child) {
     {
         //cout << "filho nao encontrado" << endl;
     }
+}
+
+int GTNode::getWeight() const {
+    return weight;
+}
+
+void GTNode::setWeight(int weight) {
+    GTNode::weight = weight;
 };

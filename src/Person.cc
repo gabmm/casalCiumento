@@ -76,6 +76,12 @@ void Person::changeMargin() {
         this->place = "hotel";
 }
 
+int Person::getWeight() {
+    return this->weight;
+}
 
+void Person::setWeight(int w) {
+    this->weight = w;
+}
 
 
