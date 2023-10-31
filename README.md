@@ -73,7 +73,10 @@ A opção "algoritmo" deve ser uma das seguintes:
 | `-i` | Busca irrevogável                  |
 | `-b` | Busca Backtracking                 | 
 | `-l` | Busca em largura                   | 
-| `-d` | Busca em profundidade              | 
+| `-d` | Busca em profundidade              |
+| `-o` | Busca ordenada                     |
+| `-g` | Busca gulosa                       |
+| `-a` | Busca A*                           |
 
 
 A opção "outras_opcoes" pode ser uma das seguintes:
