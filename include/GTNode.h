@@ -26,6 +26,7 @@ public:
     void popRule();//pula uma regra
     int getWeight() const;
     void setWeight(int weight);
+    int getGreedyWeight();
 
 protected:
     Scenario state; //key
@@ -35,6 +36,7 @@ protected:
     int selectedRule; //regra escolhida para gerar o estado atual
     queue<int> applicableRules; //fila que representa as possiveis regras. Leva em consideracao tanto as regras do problema quanto a possibilidade de loops
     int weight;
+    int greedyWeight;
 };
 
 #endif //CASALCIUMENTO_GTNODE_H

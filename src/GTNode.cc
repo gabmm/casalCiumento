@@ -9,10 +9,13 @@ GTNode::GTNode(Scenario state, GTNode* parent, int stateNumber, int ruleNumber) 
     this->stateNumber = stateNumber;
     this->selectedRule = ruleNumber;
     this->weight = 0;
+    this->greedyWeight = 0;
 
     if(parent != nullptr){
         this->weight = parent->getWeight() + state.getRuleCost(ruleNumber);
     }
+
+    this->greedyWeight = this->getState().getGreedyWeight();
 }
 
 GTNode::~GTNode() {
@@ -104,4 +107,8 @@ int GTNode::getWeight() const {
 
 void GTNode::setWeight(int weight) {
     GTNode::weight = weight;
+}
+
+int GTNode::getGreedyWeight() {
+    return this->greedyWeight;
 };

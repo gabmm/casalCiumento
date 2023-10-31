@@ -32,6 +32,7 @@ public:
     int getRuleCost(int rule); //retorna o custo da regra
     bool canApply(int rule); //retorna true se a regra pode ser aplicada
     bool canTraverse(string p1, string p2); // retorna true se P1 e P2 puderem atravessar
+    int getGreedyWeight();
 
 
 private:
