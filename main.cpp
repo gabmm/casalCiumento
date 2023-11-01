@@ -100,7 +100,7 @@ int main(int argc, char* argv[]) {
     int chosenRuleSet = 0;
     string outputPath = "output.csv";
 
-    while((opt = getopt(argc, argv, "mt:ibldgpor:")) != -1)
+    while((opt = getopt(argc, argv, "mt:ibldpogr:")) != -1)
     {
         if(opt == 't') {
             performanceTest = true;

@@ -91,10 +91,10 @@ void AIAlgorithm::breadthFirstSearch(GTree& gtree, bool to_prune, int &depth){
     GTNode* node = gtree.getRoot(); //ponteiro pro ultimo estado, nesse caso o estado inicial
 
     cout << "Busca em largura " << endl;
-    gtree.print();
+    //gtree.print();
 
     queue<GTNode*> open; // Fila dos abertos
-    queue<int> empty; // Fila dos abertos
+    //queue<int> empty; // Fila dos abertos
     queue<GTNode*> closed; // Fila dos fechados
     open.push(node); // Adicionar a raiz no aberto
     GTNode* first;
@@ -160,6 +160,12 @@ void AIAlgorithm::depthFirstSearch(GTree& gtree, bool to_prune, int &depth){
     //unsigned int depth = 0;
     while (true)
     {
+
+        if (open.empty()) {
+            cout << endl << "ERRO! Não foi encontrada a solução." << endl;
+            break;
+        }
+
         top = open.top();                   // recebe sempre o primeiro elemento da pilha de abertos
 
         if (top->getState().isEveryoneSafe()) { // verifica se o no que acabou de ser visitado é a solução
@@ -167,12 +173,11 @@ void AIAlgorithm::depthFirstSearch(GTree& gtree, bool to_prune, int &depth){
             break;
         }
 
-        // top->printState();                // imprime estado atual
-        if (open.empty()) {
-            cout << endl << "ERRO! Não foi encontrada a solução." << endl;
-            break;
-        }
+        top->printState();                // imprime estado atual
 
+        //caso não haja mais regras para aplicar e não é a solução então significa que temos de mudar o nosso first
+        closed.push(top);       // copia o no visitado de aberto para fechado
+        open.pop();             // remove o no visitado da fila de abertos
 
         while (!top->getQueue().empty())  // Enquanto a lista de regras não for vazia vou aplicar todas as regras possiveis
         {
@@ -188,17 +193,12 @@ void AIAlgorithm::depthFirstSearch(GTree& gtree, bool to_prune, int &depth){
                 }
             }
             else {
-                if (!gtree.FindOnPath(state, node)) { //se o estado que a travessia gerou nao se repetiu                   //aplica a regra no cenário criado
-                    node = gtree.Insert(state, top, rule);    //insere o nó no cenario com o pai first;
-                    open.push(node);
-                }
+                node = gtree.Insert(state, top, rule);    //insere o nó no cenario com o pai first;
+                open.push(node);
             }
             top->popRule();
         }
 
-        //caso não haja mais regras para aplicar e não é a solução então significa que temos de mudar o nosso first
-        closed.push(top);       // copia o no visitado de aberto para fechado
-        open.pop();             // remove o no visitado da fila de abertos
     }
     gtree.printPath(top, depth);
 }
