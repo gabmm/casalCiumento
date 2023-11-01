@@ -291,7 +291,7 @@ void AIAlgorithm::orderedSearch(GTree &gtree, bool to_prune, int &depth) {
     GTNode* node = gtree.getRoot(); //ponteiro pro ultimo estado, nesse caso o estado inicial
 
     cout << "Busca ordenada " << endl;
-    gtree.print();
+    //gtree.print();
 
     deque<GTNode*> open; // Fila dos abertos
     //queue<int> empty; // Fila dos abertos
@@ -325,6 +325,22 @@ void AIAlgorithm::orderedSearch(GTree &gtree, bool to_prune, int &depth) {
             state.setState(first->getState());   // seta ele para que seja igual ao atual
             int rule = first->getQueue().front();       //copia a primeira regra da fila de regras possiveis
             state.applyRule(rule);
+
+            /*
+             * PODA NA ARVORE ORDENADA:
+             * 1. Procura se o novo estado existe na árvore
+             * 2. Se sim, busca o nó associado a ele
+             * 3. Se não, insere o novo estado como nó e finaliza
+             * 4. No caso de já existir, compara o peso do nó antigo com o do nó novo
+             * 5. Se o nó antigo for melhor, não insere o novo estado e finaliza (poda novo nó)
+             * 6. Se o nó novo for melhor, insere o nó novo
+             * 7. Agora devemos retirar o antigo, pior, da árvore e da lista de abertos
+             * 8. Busca-se o nó antigo na lista de abertos, caso ele não seja encontrado, apesar de ele
+             * existir na árvore, significa que ele está nos fechados e já possui filhos. Nesse caso
+             * ele continua na árvore e teremos dois estados iguais. Sem problemas.\
+             * 9. Caso ele seja encontrado na lista de abertos, removemos ele da lista de abertos
+             * e da árvore.
+             */
 
             if (to_prune) {
                 GTNode* oldNode = nullptr;
@@ -407,20 +423,12 @@ void AIAlgorithm::greedySearch(GTree &gtree, bool to_prune, int &depth) {
             state.applyRule(rule);
 
             if (to_prune) {
-                //implementar poda
-                /* Passos:
-                 * procurar se existe na árvore, se não, insere e finaliza aqui
-                 * se existir já na arvore, comparar os pesos
-                 * se o peso do novo for maior que do antigo, não insere e finaliza aqui
-                 * se o peso do novo for menor que do antigo, insere na arvore
-                 * se o antigo estiver na lista de abertos significa que é folha, portanto remove da arvore e da lista
-                 * se o antigo nao estiver na lista de abertos, significa que já foi visitado, logo não faz nada */
-                if (!gtree.Search(state))
+                if (!gtree.Search(state)) // se o estado nao existe na arvore, entao insere o novo
                 {
                     node = gtree.Insert(state, first, rule);
                     greedyInsert(open, node);
                 }
-                else{
+                else{ // se já existe, descarta o novo
                     cout << endl << "Poda realizada!" << endl;
                 }
             }
@@ -435,9 +443,15 @@ void AIAlgorithm::greedySearch(GTree &gtree, bool to_prune, int &depth) {
         //caso não haja mais regras para aplicar e não é a solução então significa que temos de mudar o nosso first
         closed.push(first); // copia o no visitado de aberto para fechado
 
-        /* remove o first da fila de abertos: atentar-se para que, apesar do nome
-        o first nao é mais o primeiro da lista, já que novos filhos com heurísticas
-        melhores são criados e adicionados */
+
+        /*
+         * REMOCAO DA LISTA DE ABERTOS NA BUSCA GULOSA
+         * Nas outras buscas, sejam elas a largura, profundidade e ordenada, depois de gerar os filhos de um nó
+         * sempre removemos o primeiro da lista pois era ele o nó sendo visitado
+         * na busca gulosa, acontece de um nó com peso menor que o no atual entrar na lista de abertos
+         * e como o insert eh ordenado, esse no entra como primeiro
+         * dessa forma, para remove-lo, deve-se encontra-lo na lista de abertos ao inves de remover o primeiro
+         */
         for (int i = 0; i < open.size(); i++){
             if (first == open[i]) {
                 open.erase(open.begin() + i);
