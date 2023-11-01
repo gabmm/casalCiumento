@@ -305,6 +305,16 @@ void AIAlgorithm::orderedSearch(GTree &gtree, bool to_prune, int &depth) {
         first = open.front();               // recebe sempre o primeiro elemento da fila de abertos
 
         // first->printState();                // imprime estado atual
+        cout << endl << "Lista de abertos: ";
+        for (auto & i : open){
+            cout << i->getWeight() << " ";
+        }
+
+        if (first->getState().isEveryoneSafe()) { // verifica se o no que acabou de ser visitado é a solução
+            cout << endl << "PARABÉNS! Estão todos a salvo. Alcançado estado objetivo." << endl;
+            break;
+        }
+
         if (open.empty()) {
             cout << endl << "ERRO! Não foi encontrada a solução." << endl;
             break;
@@ -317,25 +327,36 @@ void AIAlgorithm::orderedSearch(GTree &gtree, bool to_prune, int &depth) {
             state.applyRule(rule);
 
             if (to_prune) {
-                if (!gtree.Search(state)) {
-                    node = gtree.Insert(state, first, rule);    //insere o nó no cenario com o pai first;
-                    //open.push_back(node);
+                GTNode* oldNode = nullptr;
+                gtree.getNode(state, oldNode);
+                if (oldNode != nullptr){
+                    if ((first->getWeight() + state.getRuleCost(rule)) < oldNode->getWeight()){
+                        node = gtree.Insert(state, first, rule);
+                        orderedInsert(open, node);
+                        for (int i = 0; i < open.size(); i++){
+                            if (oldNode == open[i]) {
+                                open.erase(open.begin() + i);
+                                gtree.RemoveLeaf(oldNode);
+                                cout << endl << "Podou aqui!" << endl;
+                            }
+                        }
+                    }
+                    else{
+                        cout << endl << "Podou aqui tambem!" << endl;
+                    }
+                }
+                else{
+                    node = gtree.Insert(state, first, rule);
                     orderedInsert(open, node);
                 }
+
             }
             else {
-                if (!gtree.FindOnPath(state, node)) { //se o estado que a travessia gerou nao se repetiu                   //aplica a regra no cenário criado
-                    node = gtree.Insert(state, first, rule);    //insere o nó no cenario com o pai first;
-                    //open.push_back(node);
-                    orderedInsert(open, node);
-
-                }
+                node = gtree.Insert(state, first, rule);    //insere o nó no cenario com o pai first;
+                //open.push_back(node);
+                orderedInsert(open, node);
             }
             first->popRule();                           //remove a regra usada
-        }
-        if (first->getState().isEveryoneSafe()) { // verifica se o no que acabou de ser visitado é a solução
-            cout << endl << "PARABÉNS! Estão todos a salvo. Alcançado estado objetivo." << endl;
-            break;
         }
 
         //caso não haja mais regras para aplicar e não é a solução então significa que temos de mudar o nosso first
@@ -343,13 +364,7 @@ void AIAlgorithm::orderedSearch(GTree &gtree, bool to_prune, int &depth) {
         open.pop_front();         // remove o no visitado da fila de abertos
     }
 
-    GTNode* parent = first;
-    while (parent != nullptr)
-    {
-        parent->getState().print();
-        parent = parent->getParent();
-        depth++;
-    }
+    gtree.printPath(first, depth);
 }
 
 void AIAlgorithm::greedySearch(GTree &gtree, bool to_prune, int &depth) {
@@ -366,6 +381,12 @@ void AIAlgorithm::greedySearch(GTree &gtree, bool to_prune, int &depth) {
     while (true)
     {
         first = open.front();               // recebe sempre o primeiro elemento da fila de abertos
+
+        //first->printState();
+        cout << endl << "Lista de abertos: ";
+        for (auto & i : open){
+            cout << i->getGreedyWeight() << " ";
+        }
 
         // first->printState();                // imprime estado atual
         if (open.empty()) {
@@ -387,6 +408,21 @@ void AIAlgorithm::greedySearch(GTree &gtree, bool to_prune, int &depth) {
 
             if (to_prune) {
                 //implementar poda
+                /* Passos:
+                 * procurar se existe na árvore, se não, insere e finaliza aqui
+                 * se existir já na arvore, comparar os pesos
+                 * se o peso do novo for maior que do antigo, não insere e finaliza aqui
+                 * se o peso do novo for menor que do antigo, insere na arvore
+                 * se o antigo estiver na lista de abertos significa que é folha, portanto remove da arvore e da lista
+                 * se o antigo nao estiver na lista de abertos, significa que já foi visitado, logo não faz nada */
+                if (!gtree.Search(state))
+                {
+                    node = gtree.Insert(state, first, rule);
+                    greedyInsert(open, node);
+                }
+                else{
+                    cout << endl << "Poda realizada!" << endl;
+                }
             }
             else {
                 node = gtree.Insert(state, first, rule);
@@ -398,8 +434,16 @@ void AIAlgorithm::greedySearch(GTree &gtree, bool to_prune, int &depth) {
 
         //caso não haja mais regras para aplicar e não é a solução então significa que temos de mudar o nosso first
         closed.push(first); // copia o no visitado de aberto para fechado
-        open.pop_front();         // remove o no visitado da fila de abertos
-    }
 
+        /* remove o first da fila de abertos: atentar-se para que, apesar do nome
+        o first nao é mais o primeiro da lista, já que novos filhos com heurísticas
+        melhores são criados e adicionados */
+        for (int i = 0; i < open.size(); i++){
+            if (first == open[i]) {
+                open.erase(open.begin() + i);
+                break;
+            }
+        }
+    }
     gtree.printPath(first, depth);
 }

@@ -46,6 +46,21 @@ void GTree::auxSearch(Scenario sc, GTNode* node, int& flag) {
                 this->auxSearch(sc, node->getChildren().at(i), flag);
 }
 
+void GTree::getNode(Scenario scenario, GTNode* &p) {
+    this->auxGetNode(this->root, scenario, p);
+}
+
+void GTree::auxGetNode(GTNode* node, Scenario sc, GTNode* &p) {
+    if (node->isEqual(sc)) {
+        p = node;
+    }
+    else {
+        if (!node->isLeaf())
+            for (int i = 0; i < node->getChildren().size(); i++)
+                this->auxGetNode(node->getChildren().at(i), sc, p);
+    }
+}
+
 GTNode* GTree::getRoot() {
     return this->root;
 }

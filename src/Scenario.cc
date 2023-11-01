@@ -484,7 +484,7 @@ bool Scenario::canApply(int rule) {
 int Scenario::getGreedyWeight() {
     int greedyWeight = 0;
 
-    if (!this->getPerson("f1")->isSafe()) // se mulher 1 ou homem 1 ainda não estiverem salvos, peso +=3
+    if (!this->getPerson("f1")->isSafe())
         greedyWeight += 3;
 
     if (!this->getPerson("f2")->isSafe())
@@ -493,13 +493,13 @@ int Scenario::getGreedyWeight() {
     if (!this->getPerson("f3")->isSafe())
         greedyWeight += 1;
 
-    if (!this->getPerson("h1")->isSafe())
+    if (!this->getPerson("m1")->isSafe())
         greedyWeight += 3;
 
-    if (!this->getPerson("h2")->isSafe())
+    if (!this->getPerson("m2")->isSafe())
         greedyWeight += 2;
 
-    if (!this->getPerson("h3")->isSafe())
+    if (!this->getPerson("m3")->isSafe())
         greedyWeight += 1;
 
     return greedyWeight;
