@@ -47,6 +47,8 @@ string runAlgorithm(int algorithm, bool to_prune, vector<int> rules){
         AIAlgorithm::orderedSearch(gtree, to_prune, depth);
     else if(algorithm==5)
         AIAlgorithm::greedySearch(gtree, to_prune, depth);
+    else if(algorithm==6)
+        AIAlgorithm::aStarSearch(gtree, to_prune, depth);
 
     cout << "Profundidade (poda = " << boolalpha <<to_prune<<"): " << depth << endl;
     cout << "SOLUÇÃO ENCONTRADO COM PASSAGEM POR " << gtree.getTotalStates() << " estados diferentes." << endl;
@@ -138,7 +140,12 @@ int main(int argc, char* argv[]) {
         else if(opt == 'g') {
             algorithm = 5;
         }
+        else if (opt == 'a') {
+            algorithm = 6;
+        }
     }
+
+    algorithm = 6;
 
     cout << "Regra escolhida: " << chosenRuleSet << endl;
     cout << "Poda: " << boolalpha << to_prune << endl;

@@ -461,3 +461,77 @@ void AIAlgorithm::greedySearch(GTree &gtree, bool to_prune, int &depth) {
     }
     gtree.printPath(first, depth);
 }
+
+void aStarInsert(deque<GTNode*> &deque, GTNode* node){
+    //insert node into deque ordered by cost
+    bool inserted = false;
+    for (auto it = deque.begin(); it != deque.end(); it++){
+        if (node->getAStarWeight() < (*it)->getAStarWeight()) {
+            deque.insert(it, node);
+            inserted = true;
+            break;
+        }
+    }
+    if (!inserted) deque.push_back(node);
+}
+
+void AIAlgorithm::aStarSearch(GTree &gtree, bool to_prune, int &depth) {
+    GTNode* node = gtree.getRoot(); //ponteiro pro ultimo estado, nesse caso o estado inicial
+
+    cout << "Busca A* " << endl;
+    gtree.print();
+
+    deque<GTNode*> open; // Fila dos abertos
+    queue<GTNode*> closed; // Fila dos fechados
+    open.push_back(node); // Adicionar a raiz no aberto
+    GTNode* first;
+
+    while (true)
+    {
+        first = open.front();
+
+        /* cout << endl << "Lista de abertos: ";
+        for (auto & i : open){
+            cout << i->getAStarWeight() << " ";
+        } */
+
+        if (open.empty()) {
+            cout << endl << "ERRO! Não foi encontrada a solução." << endl;
+            break;
+        }
+
+        if (first->getState().isEveryoneSafe()) { // verifica se o no visitado é a solução
+            cout << endl << "PARABÉNS! Estão todos a salvo. Alcançado estado objetivo." << endl;
+            break;
+        }
+
+        while (!first->getQueue().empty())  // Gera os filhos para cada regra aplicavel
+        {
+            Scenario state;                     //cria cenario inicial
+            state.setState(first->getState());   // seta ele para que seja igual ao atual
+            int rule = first->getQueue().front();       //copia a primeira regra da fila de regras possiveis
+            state.applyRule(rule);
+
+            if (to_prune) {
+                // nao
+            }
+            else {
+                node = gtree.Insert(state, first, rule);
+                aStarInsert(open, node);
+            }
+
+            first->popRule();                           
+        }
+
+        closed.push(first);
+
+
+        for (int i = 0; i < open.size(); i++){
+            if (first == open[i]) {
+                open.erase(open.begin() + i);
+                break;
+            }
+        }
+    }
+    gtree.printPath(first, depth);
+}

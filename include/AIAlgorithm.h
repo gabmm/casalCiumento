@@ -15,6 +15,7 @@ public:
     static void depthFirstSearch(GTree& gtree, bool to_prune, int &depth);
     static void manualSearch(GTree& gtree, int &depth);
     static void greedySearch(GTree& gtree, bool to_prune, int &depth);
+    static void aStarSearch(GTree& gtree, bool to_prune, int &depth);
 };
 
 
