@@ -145,8 +145,6 @@ int main(int argc, char* argv[]) {
         }
     }
 
-    algorithm = 6;
-
     cout << "Regra escolhida: " << chosenRuleSet << endl;
     cout << "Poda: " << boolalpha << to_prune << endl;
     cout << "Algoritmo: " << algorithm << endl;
