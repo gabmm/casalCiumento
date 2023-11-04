@@ -102,7 +102,7 @@ int main(int argc, char* argv[]) {
     int chosenRuleSet = 0;
     string outputPath = "output.csv";
 
-    while((opt = getopt(argc, argv, "mt:ibldpogr:")) != -1)
+    while((opt = getopt(argc, argv, "mt:ibldpogar:")) != -1)
     {
         if(opt == 't') {
             performanceTest = true;
@@ -140,7 +140,7 @@ int main(int argc, char* argv[]) {
         else if(opt == 'g') {
             algorithm = 5;
         }
-        else if (opt == 'a') {
+        else if(opt == 'a') {
             algorithm = 6;
         }
     }
@@ -154,6 +154,6 @@ int main(int argc, char* argv[]) {
     } else {
         runAlgorithm(algorithm, to_prune, ruleSets[chosenRuleSet]);
     }
-
+ 
     return 0;
 }
