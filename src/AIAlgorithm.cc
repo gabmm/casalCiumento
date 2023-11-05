@@ -490,10 +490,10 @@ void AIAlgorithm::aStarSearch(GTree &gtree, bool to_prune, int &depth) {
     {
         first = open.front();
 
-        /* cout << endl << "Lista de abertos: ";
+        cout << endl << "Lista de abertos: ";
         for (auto & i : open){
             cout << i->getAStarWeight() << " ";
-        } */
+        }
 
         if (open.empty()) {
             cout << endl << "ERRO! Não foi encontrada a solução." << endl;
@@ -513,7 +513,10 @@ void AIAlgorithm::aStarSearch(GTree &gtree, bool to_prune, int &depth) {
             state.applyRule(rule);
 
             if (to_prune) {
-                // nao
+                if (!gtree.Search(state)) {
+                    node = gtree.Insert(state, first, rule);
+                    aStarInsert(open, node);
+                }
             }
             else {
                 node = gtree.Insert(state, first, rule);
