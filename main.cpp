@@ -30,7 +30,6 @@ string runAlgorithm(int algorithm, bool to_prune, vector<int> rules){
     auto t0 = std::chrono::high_resolution_clock::now();
     int depth = 0;
     GTree gtree(rules); //inicializa arvore
-    int totalStates = gtree.getTotalStates();
     stringstream str;
 
     if(algorithm==-1)
@@ -50,8 +49,9 @@ string runAlgorithm(int algorithm, bool to_prune, vector<int> rules){
     else if(algorithm==6)
         AIAlgorithm::aStarSearch(gtree, to_prune, depth);
 
+    int totalStates = gtree.getTotalStates();
     cout << "Profundidade (poda = " << boolalpha <<to_prune<<"): " << depth << endl;
-    cout << "SOLUÇÃO ENCONTRADO COM PASSAGEM POR " << gtree.getTotalStates() << " estados diferentes." << endl;
+    cout << "SOLUÇÃO ENCONTRADO COM PASSAGEM POR " << totalStates << " estados diferentes." << endl;
     auto t1 = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> delta = t1 - t0;
     Set_CPUtime(&p, delta.count());
