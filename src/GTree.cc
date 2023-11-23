@@ -155,4 +155,13 @@ void GTree::printPath(GTNode* node, int &depth) {
     }
 }
 
+string GTree::dotString(int limit) {
+    string result = "digraph G {\n"
+                    "node [margin=0.1 width=0.5 shape=record style=rounded]\n"
+                    "edge[fontcolor=blue]\n";
+    result += this->root->dotString(0, limit);
+    result += "}";
+    return result;
+}
+
 

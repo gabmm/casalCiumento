@@ -504,3 +504,17 @@ int Scenario::getGreedyWeight() {
 
     return greedyWeight;
 }
+
+string Scenario::toString() {
+    std::string stateStr = "";
+
+    this->m1->isSafe() ? stateStr += " 1 |" : stateStr += " 0 |";
+    this->f1->isSafe() ? stateStr += " 1 |" : stateStr += " 0 |";
+    this->m2->isSafe() ? stateStr += " 1 |" : stateStr += " 0 |";
+    this->f2->isSafe() ? stateStr += " 1 |" : stateStr += " 0 |";
+    this->m3->isSafe() ? stateStr += " 1 |" : stateStr += " 0 |";
+    this->f3->isSafe() ? stateStr += " 1 |" : stateStr += " 0 |";
+    this->boat->isSafe() ? stateStr += " 1 " : stateStr += " 0 ";
+
+    return stateStr;
+}

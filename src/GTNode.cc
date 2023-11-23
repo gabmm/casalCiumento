@@ -118,3 +118,19 @@ int GTNode::getGreedyWeight() {
 int GTNode::getAStarWeight() {
     return this->aStarWeight;
 }
+
+string GTNode::dotString(int current, int limit) {
+    string str = std::to_string(this->stateNumber);
+    str+= "[label=\"" + this->state.toString() + "\"];\n";
+
+
+    if(current < limit){
+        for(int i = 0; i < this->children.size(); i++){
+            str += std::to_string(this->stateNumber) + " -> " + std::to_string(this->children[i]->stateNumber);
+            str += "[label=\"" + std::to_string(this->children[i]->selectedRule) + "\"];\n";
+            str += this->children[i]->dotString(current +1, limit);
+        }
+    }
+
+    return str;
+}

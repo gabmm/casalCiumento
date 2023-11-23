@@ -28,6 +28,7 @@ public:
     void setWeight(int weight);
     int getGreedyWeight();
     int getAStarWeight();
+    string dotString(int current, int limit);
 
 protected:
     Scenario state; //key

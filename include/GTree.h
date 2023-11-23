@@ -26,6 +26,7 @@ public:
     void printPath(GTNode* node, int &depth); //imprime o caminho solucao
     void getNode(Scenario scenario, GTNode* &p);
     void auxGetNode(GTNode* node, Scenario scenario, GTNode* &p);
+    string dotString(int limit);
 
 private:
     GTNode* root; //ponteiro para a raíz

@@ -79,6 +79,11 @@ string runAlgorithm(int algorithm, bool to_prune, vector<int> rules){
         << ");" << depth << ";" << totalStates << ";"
         << to_string(p.time) << "\n";
 
+
+    ofstream f_out = createOutputFile("output.dot");
+    f_out << gtree.dotString(3);
+    f_out.close();
+
     return str.str();
 
 }
@@ -95,6 +100,7 @@ int runPerformanceTest(int algorithm, bool to_prune, vector<int> rules, string o
         f_out << result;
         i_aux++;
     }
+    f_out.close();
 
     return 0;
 }

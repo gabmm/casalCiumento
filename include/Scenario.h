@@ -33,6 +33,7 @@ public:
     bool canApply(int rule); //retorna true se a regra pode ser aplicada
     bool canTraverse(string p1, string p2); // retorna true se P1 e P2 puderem atravessar
     int getGreedyWeight();
+    string toString(); //retorna uma string que representa o estado
 
 
 private:
