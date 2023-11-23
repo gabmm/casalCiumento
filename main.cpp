@@ -2,7 +2,7 @@
 #include <vector>
 #include "include/GTree.h"
 #include "include/AIAlgorithm.h"
-#include "Metrics.h"
+#include "include/Metrics.h"
 #include <string>
 #include <chrono>
 #include <getopt.h>
@@ -30,7 +30,6 @@ string runAlgorithm(int algorithm, bool to_prune, vector<int> rules){
     auto t0 = std::chrono::high_resolution_clock::now();
     int depth = 0;
     GTree gtree(rules); //inicializa arvore
-    int totalStates = gtree.getTotalStates();
     stringstream str;
 
     if(algorithm==-1)
@@ -45,9 +44,14 @@ string runAlgorithm(int algorithm, bool to_prune, vector<int> rules){
         AIAlgorithm::depthFirstSearch(gtree, to_prune, depth);
     else if(algorithm==4)
         AIAlgorithm::orderedSearch(gtree, to_prune, depth);
+    else if(algorithm==5)
+        AIAlgorithm::greedySearch(gtree, to_prune, depth);
+    else if(algorithm==6)
+        AIAlgorithm::aStarSearch(gtree, to_prune, depth);
 
+    int totalStates = gtree.getTotalStates();
     cout << "Profundidade (poda = " << boolalpha <<to_prune<<"): " << depth << endl;
-    cout << "SOLUÇÃO ENCONTRADO COM PASSAGEM POR " << gtree.getTotalStates() << " estados diferentes." << endl;
+    cout << "SOLUÇÃO ENCONTRADO COM PASSAGEM POR " << totalStates << " estados diferentes." << endl;
     auto t1 = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> delta = t1 - t0;
     Set_CPUtime(&p, delta.count());
@@ -74,6 +78,8 @@ int runPerformanceTest(int algorithm, bool to_prune, vector<int> rules, string o
         f_out << result;
         i_aux++;
     }
+
+    return 0;
 }
 
 int main(int argc, char* argv[]) {
@@ -96,7 +102,7 @@ int main(int argc, char* argv[]) {
     int chosenRuleSet = 0;
     string outputPath = "output.csv";
 
-    while((opt = getopt(argc, argv, "mt:ibldpor:")) != -1)
+    while((opt = getopt(argc, argv, "mt:ibldpogar:")) != -1)
     {
         if(opt == 't') {
             performanceTest = true;
@@ -131,6 +137,12 @@ int main(int argc, char* argv[]) {
         else if(opt == 'o') {
             algorithm = 4;
         }
+        else if(opt == 'g') {
+            algorithm = 5;
+        }
+        else if(opt == 'a') {
+            algorithm = 6;
+        }
     }
 
     cout << "Regra escolhida: " << chosenRuleSet << endl;
@@ -142,6 +154,6 @@ int main(int argc, char* argv[]) {
     } else {
         runAlgorithm(algorithm, to_prune, ruleSets[chosenRuleSet]);
     }
-
+ 
     return 0;
 }

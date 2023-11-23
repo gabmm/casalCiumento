@@ -91,10 +91,10 @@ void AIAlgorithm::breadthFirstSearch(GTree& gtree, bool to_prune, int &depth){
     GTNode* node = gtree.getRoot(); //ponteiro pro ultimo estado, nesse caso o estado inicial
 
     cout << "Busca em largura " << endl;
-    gtree.print();
+    //gtree.print();
 
     queue<GTNode*> open; // Fila dos abertos
-    queue<int> empty; // Fila dos abertos
+    //queue<int> empty; // Fila dos abertos
     queue<GTNode*> closed; // Fila dos fechados
     open.push(node); // Adicionar a raiz no aberto
     GTNode* first;
@@ -160,6 +160,12 @@ void AIAlgorithm::depthFirstSearch(GTree& gtree, bool to_prune, int &depth){
     //unsigned int depth = 0;
     while (true)
     {
+
+        if (open.empty()) {
+            cout << endl << "ERRO! Não foi encontrada a solução." << endl;
+            break;
+        }
+
         top = open.top();                   // recebe sempre o primeiro elemento da pilha de abertos
 
         if (top->getState().isEveryoneSafe()) { // verifica se o no que acabou de ser visitado é a solução
@@ -167,16 +173,12 @@ void AIAlgorithm::depthFirstSearch(GTree& gtree, bool to_prune, int &depth){
             break;
         }
 
-        // top->printState();                // imprime estado atual
-        if (open.empty()) {
-            cout << endl << "ERRO! Não foi encontrada a solução." << endl;
-            break;
-        }
+        top->printState();                // imprime estado atual
 
         //caso não haja mais regras para aplicar e não é a solução então significa que temos de mudar o nosso first
-
         closed.push(top);       // copia o no visitado de aberto para fechado
         open.pop();             // remove o no visitado da fila de abertos
+
         while (!top->getQueue().empty())  // Enquanto a lista de regras não for vazia vou aplicar todas as regras possiveis
         {
             Scenario state;                     //cria cenario inicial
@@ -191,10 +193,8 @@ void AIAlgorithm::depthFirstSearch(GTree& gtree, bool to_prune, int &depth){
                 }
             }
             else {
-                if (!gtree.FindOnPath(state, node)) { //se o estado que a travessia gerou nao se repetiu                   //aplica a regra no cenário criado
-                    node = gtree.Insert(state, top, rule);    //insere o nó no cenario com o pai first;
-                    open.push(node);
-                }
+                node = gtree.Insert(state, top, rule);    //insere o nó no cenario com o pai first;
+                open.push(node);
             }
             top->popRule();
         }
@@ -274,11 +274,24 @@ void orderedInsert(deque<GTNode*> &deque, GTNode* node){
     if (!inserted) deque.push_back(node);
 }
 
+void greedyInsert(deque<GTNode*> &deque, GTNode* node){
+    //insert node into deque ordered by cost
+    bool inserted = false;
+    for (auto it = deque.begin(); it != deque.end(); it++){
+        if (node->getGreedyWeight() < (*it)->getGreedyWeight()) {
+            deque.insert(it, node);
+            inserted = true;
+            break;
+        }
+    }
+    if (!inserted) deque.push_back(node);
+}
+
 void AIAlgorithm::orderedSearch(GTree &gtree, bool to_prune, int &depth) {
     GTNode* node = gtree.getRoot(); //ponteiro pro ultimo estado, nesse caso o estado inicial
 
     cout << "Busca ordenada " << endl;
-    gtree.print();
+    //gtree.print();
 
     deque<GTNode*> open; // Fila dos abertos
     //queue<int> empty; // Fila dos abertos
@@ -292,6 +305,16 @@ void AIAlgorithm::orderedSearch(GTree &gtree, bool to_prune, int &depth) {
         first = open.front();               // recebe sempre o primeiro elemento da fila de abertos
 
         // first->printState();                // imprime estado atual
+        cout << endl << "Lista de abertos: ";
+        for (auto & i : open){
+            cout << i->getWeight() << " ";
+        }
+
+        if (first->getState().isEveryoneSafe()) { // verifica se o no que acabou de ser visitado é a solução
+            cout << endl << "PARABÉNS! Estão todos a salvo. Alcançado estado objetivo." << endl;
+            break;
+        }
+
         if (open.empty()) {
             cout << endl << "ERRO! Não foi encontrada a solução." << endl;
             break;
@@ -303,26 +326,53 @@ void AIAlgorithm::orderedSearch(GTree &gtree, bool to_prune, int &depth) {
             int rule = first->getQueue().front();       //copia a primeira regra da fila de regras possiveis
             state.applyRule(rule);
 
+            /*
+             * PODA NA ARVORE ORDENADA:
+             * 1. Procura se o novo estado existe na árvore
+             * 2. Se sim, busca o nó associado a ele
+             * 3. Se não, insere o novo estado como nó e finaliza
+             * 4. No caso de já existir, compara o peso do nó antigo com o do nó novo
+             * 5. Se o nó antigo for melhor, não insere o novo estado e finaliza (poda novo nó)
+             * 6. Se o nó novo for melhor, insere o nó novo
+             * 7. Agora devemos retirar o antigo, pior, da árvore e da lista de abertos
+             * 8. Busca-se o nó antigo na lista de abertos, caso ele não seja encontrado, apesar de ele
+             * existir na árvore, significa que ele está nos fechados e já possui filhos. Nesse caso
+             * ele continua na árvore e teremos dois estados iguais. Sem problemas.\
+             * 9. Caso ele seja encontrado na lista de abertos, removemos ele da lista de abertos
+             * e da árvore.
+             */
+
             if (to_prune) {
-                if (!gtree.Search(state)) {
-                    node = gtree.Insert(state, first, rule);    //insere o nó no cenario com o pai first;
-                    //open.push_back(node);
+                GTNode* oldNode = nullptr;
+                gtree.getNode(state, oldNode);
+                if (oldNode != nullptr){
+                    if ((first->getWeight() + state.getRuleCost(rule)) < oldNode->getWeight()){
+                        node = gtree.Insert(state, first, rule);
+                        orderedInsert(open, node);
+                        for (int i = 0; i < open.size(); i++){
+                            if (oldNode == open[i]) {
+                                open.erase(open.begin() + i);
+                                gtree.RemoveLeaf(oldNode);
+                                cout << endl << "Podou aqui!" << endl;
+                            }
+                        }
+                    }
+                    else{
+                        cout << endl << "Podou aqui tambem!" << endl;
+                    }
+                }
+                else{
+                    node = gtree.Insert(state, first, rule);
                     orderedInsert(open, node);
                 }
+
             }
             else {
-                if (!gtree.FindOnPath(state, node)) { //se o estado que a travessia gerou nao se repetiu                   //aplica a regra no cenário criado
-                    node = gtree.Insert(state, first, rule);    //insere o nó no cenario com o pai first;
-                    //open.push_back(node);
-                    orderedInsert(open, node);
-
-                }
+                node = gtree.Insert(state, first, rule);    //insere o nó no cenario com o pai first;
+                //open.push_back(node);
+                orderedInsert(open, node);
             }
             first->popRule();                           //remove a regra usada
-        }
-        if (first->getState().isEveryoneSafe()) { // verifica se o no que acabou de ser visitado é a solução
-            cout << endl << "PARABÉNS! Estão todos a salvo. Alcançado estado objetivo." << endl;
-            break;
         }
 
         //caso não haja mais regras para aplicar e não é a solução então significa que temos de mudar o nosso first
@@ -330,11 +380,161 @@ void AIAlgorithm::orderedSearch(GTree &gtree, bool to_prune, int &depth) {
         open.pop_front();         // remove o no visitado da fila de abertos
     }
 
-    GTNode* parent = first;
-    while (parent != nullptr)
+    gtree.printPath(first, depth);
+}
+
+void AIAlgorithm::greedySearch(GTree &gtree, bool to_prune, int &depth) {
+    GTNode* node = gtree.getRoot(); //ponteiro pro ultimo estado, nesse caso o estado inicial
+
+    cout << "Busca Gulosa " << endl;
+    gtree.print();
+
+    deque<GTNode*> open; // Fila dos abertos
+    queue<GTNode*> closed; // Fila dos fechados
+    open.push_back(node); // Adicionar a raiz no aberto
+    GTNode* first;
+
+    while (true)
     {
-        parent->getState().print();
-        parent = parent->getParent();
-        depth++;
+        first = open.front();               // recebe sempre o primeiro elemento da fila de abertos
+
+        //first->printState();
+        cout << endl << "Lista de abertos: ";
+        for (auto & i : open){
+            cout << i->getGreedyWeight() << " ";
+        }
+
+        // first->printState();                // imprime estado atual
+        if (open.empty()) {
+            cout << endl << "ERRO! Não foi encontrada a solução." << endl;
+            break;
+        }
+
+        if (first->getState().isEveryoneSafe()) { // verifica se o no que acabou de ser visitado é a solução
+            cout << endl << "PARABÉNS! Estão todos a salvo. Alcançado estado objetivo." << endl;
+            break;
+        }
+
+        while (!first->getQueue().empty())  // Enquanto a lista de regras não for vazia vou aplicar todas as regras possiveis
+        {
+            Scenario state;                     //cria cenario inicial
+            state.setState(first->getState());   // seta ele para que seja igual ao atual
+            int rule = first->getQueue().front();       //copia a primeira regra da fila de regras possiveis
+            state.applyRule(rule);
+
+            if (to_prune) {
+                if (!gtree.Search(state)) // se o estado nao existe na arvore, entao insere o novo
+                {
+                    node = gtree.Insert(state, first, rule);
+                    greedyInsert(open, node);
+                }
+                else{ // se já existe, descarta o novo
+                    cout << endl << "Poda realizada!" << endl;
+                }
+            }
+            else {
+                node = gtree.Insert(state, first, rule);
+                greedyInsert(open, node);
+            }
+
+            first->popRule();                           //remove a regra usada
+        }
+
+        //caso não haja mais regras para aplicar e não é a solução então significa que temos de mudar o nosso first
+        closed.push(first); // copia o no visitado de aberto para fechado
+
+
+        /*
+         * REMOCAO DA LISTA DE ABERTOS NA BUSCA GULOSA
+         * Nas outras buscas, sejam elas a largura, profundidade e ordenada, depois de gerar os filhos de um nó
+         * sempre removemos o primeiro da lista pois era ele o nó sendo visitado
+         * na busca gulosa, acontece de um nó com peso menor que o no atual entrar na lista de abertos
+         * e como o insert eh ordenado, esse no entra como primeiro
+         * dessa forma, para remove-lo, deve-se encontra-lo na lista de abertos ao inves de remover o primeiro
+         */
+        for (int i = 0; i < open.size(); i++){
+            if (first == open[i]) {
+                open.erase(open.begin() + i);
+                break;
+            }
+        }
     }
+    gtree.printPath(first, depth);
+}
+
+void aStarInsert(deque<GTNode*> &deque, GTNode* node){
+    //insert node into deque ordered by cost
+    bool inserted = false;
+    for (auto it = deque.begin(); it != deque.end(); it++){
+        if (node->getAStarWeight() < (*it)->getAStarWeight()) {
+            deque.insert(it, node);
+            inserted = true;
+            break;
+        }
+    }
+    if (!inserted) deque.push_back(node);
+}
+
+void AIAlgorithm::aStarSearch(GTree &gtree, bool to_prune, int &depth) {
+    GTNode* node = gtree.getRoot(); //ponteiro pro ultimo estado, nesse caso o estado inicial
+
+    cout << "Busca A* " << endl;
+    gtree.print();
+
+    deque<GTNode*> open; // Fila dos abertos
+    queue<GTNode*> closed; // Fila dos fechados
+    open.push_back(node); // Adicionar a raiz no aberto
+    GTNode* first;
+
+    while (true)
+    {
+        first = open.front();
+
+        cout << endl << "Lista de abertos: ";
+        for (auto & i : open){
+            cout << i->getAStarWeight() << " ";
+        }
+
+        if (open.empty()) {
+            cout << endl << "ERRO! Não foi encontrada a solução." << endl;
+            break;
+        }
+
+        if (first->getState().isEveryoneSafe()) { // verifica se o no visitado é a solução
+            cout << endl << "PARABÉNS! Estão todos a salvo. Alcançado estado objetivo." << endl;
+            break;
+        }
+
+        while (!first->getQueue().empty())  // Gera os filhos para cada regra aplicavel
+        {
+            Scenario state;                     //cria cenario inicial
+            state.setState(first->getState());   // seta ele para que seja igual ao atual
+            int rule = first->getQueue().front();       //copia a primeira regra da fila de regras possiveis
+            state.applyRule(rule);
+
+            if (to_prune) {
+                if (!gtree.Search(state)) {
+                    node = gtree.Insert(state, first, rule);
+                    aStarInsert(open, node);
+                }
+            }
+            else {
+                node = gtree.Insert(state, first, rule);
+                aStarInsert(open, node);
+            }
+
+            first->popRule();                           
+        }
+
+        closed.push(first);
+
+
+        for (int i = 0; i < open.size(); i++){
+            if (first == open[i]) {
+                open.erase(open.begin() + i);
+                break;
+            }
+        }
+    }
+    gtree.printPath(first, depth);
 }

@@ -477,4 +477,30 @@ bool Scenario::canApply(int rule) {
         default:
             break;
     }
+
+
+}
+
+int Scenario::getGreedyWeight() {
+    int greedyWeight = 0;
+
+    if (!this->getPerson("f1")->isSafe())
+        greedyWeight += 3;
+
+    if (!this->getPerson("f2")->isSafe())
+        greedyWeight += 2;
+
+    if (!this->getPerson("f3")->isSafe())
+        greedyWeight += 1;
+
+    if (!this->getPerson("m1")->isSafe())
+        greedyWeight += 3;
+
+    if (!this->getPerson("m2")->isSafe())
+        greedyWeight += 2;
+
+    if (!this->getPerson("m3")->isSafe())
+        greedyWeight += 1;
+
+    return greedyWeight;
 }
