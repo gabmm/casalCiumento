@@ -6,7 +6,7 @@
 #include <stack>
 #include <deque>
 
-void AIAlgorithm::backtrackingSearch(GTree &gtree){
+void AIAlgorithm::backtrackingSearch(GTree &gtree, int &depth) {
 
     GTNode *node = gtree.getRoot(); //ponteiro pro ultimo estado, nesse caso o estado inicial
 
@@ -42,6 +42,7 @@ void AIAlgorithm::backtrackingSearch(GTree &gtree){
           }*/
     }
 
+    gtree.printPath(node, depth);
 
 }
 

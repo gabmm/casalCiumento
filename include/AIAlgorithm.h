@@ -8,7 +8,7 @@
 
 class AIAlgorithm {
 public:
-    static void backtrackingSearch(GTree &gtree);
+    static void backtrackingSearch(GTree &gtree, int &depth);
     static void irrevocableSearch(GTree& gtree);
     static void breadthFirstSearch(GTree& gtree, bool to_prune, int &depth);
     static void orderedSearch(GTree& gtree, bool to_prune, int &depth);

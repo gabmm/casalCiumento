@@ -31,26 +31,43 @@ string runAlgorithm(int algorithm, bool to_prune, vector<int> rules){
     int depth = 0;
     GTree gtree(rules); //inicializa arvore
     stringstream str;
+    string algName;
 
-    if(algorithm==-1)
+    if(algorithm==-1) {
+        algName = "Busca Manual";
         AIAlgorithm::manualSearch(gtree, depth);
-    if(algorithm==0)
+    }
+    if(algorithm==0) {
+        algName = "Busca Irrevogável";
         AIAlgorithm::irrevocableSearch(gtree);
-    else if(algorithm==1)
-        AIAlgorithm::backtrackingSearch(gtree);
-    else if(algorithm==2)
+    }
+    else if(algorithm==1) {
+        algName = "Busca Backtracking";
+        AIAlgorithm::backtrackingSearch(gtree, depth);
+    }
+    else if(algorithm==2) {
+        algName = "Busca em Largura";
         AIAlgorithm::breadthFirstSearch(gtree, to_prune, depth);
-    else if(algorithm==3)
+    }
+    else if(algorithm==3) {
+        algName = "Busca em Profundidade";
         AIAlgorithm::depthFirstSearch(gtree, to_prune, depth);
-    else if(algorithm==4)
+    }
+    else if(algorithm==4) {
+        algName = "Busca Ordenada";
         AIAlgorithm::orderedSearch(gtree, to_prune, depth);
-    else if(algorithm==5)
+    }
+    else if(algorithm==5) {
+        algName = "Busca Gulosa";
         AIAlgorithm::greedySearch(gtree, to_prune, depth);
-    else if(algorithm==6)
+    }
+    else if(algorithm==6) {
+        algName = "Busca A*";
         AIAlgorithm::aStarSearch(gtree, to_prune, depth);
+    }
 
     int totalStates = gtree.getTotalStates();
-    cout << "Profundidade (poda = " << boolalpha <<to_prune<<"): " << depth << endl;
+    cout << algName << " (poda = " << boolalpha <<to_prune<<"): " << depth << endl;
     cout << "SOLUÇÃO ENCONTRADO COM PASSAGEM POR " << totalStates << " estados diferentes." << endl;
     auto t1 = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> delta = t1 - t0;
@@ -58,7 +75,7 @@ string runAlgorithm(int algorithm, bool to_prune, vector<int> rules){
     Print_metrics(&p);
     cout << endl;
 
-    str << "Profundidade (poda = " << boolalpha << to_prune
+    str << algName << " (poda = " << boolalpha << to_prune
         << ");" << depth << ";" << totalStates << ";"
         << to_string(p.time) << "\n";
 
