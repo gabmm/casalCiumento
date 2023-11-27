@@ -81,8 +81,12 @@ string runAlgorithm(int algorithm, bool to_prune, vector<int> rules){
 
 
     ofstream f_out = createOutputFile("output.dot");
-    f_out << gtree.dotString(3);
+    f_out << gtree.dotString(std::numeric_limits<int>::max());
     f_out.close();
+
+    ofstream f_out2 = createOutputFile("solution.dot");
+    f_out2 << gtree.dotStringUpwards(gtree.getGoalNode());
+    f_out2.close();
 
     return str.str();
 

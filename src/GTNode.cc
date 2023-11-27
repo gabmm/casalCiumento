@@ -134,3 +134,16 @@ string GTNode::dotString(int current, int limit) {
 
     return str;
 }
+
+string GTNode::dotStringUpwards() {
+    string str = std::to_string(this->stateNumber);
+    str+= "[label=\"" + this->state.toString() + "\"];\n";
+
+    if(this->getParent() != nullptr){
+        str += std::to_string(this->getParent()->stateNumber) + " -> " + std::to_string(this->stateNumber);
+        str += "[label=\"" + std::to_string(this->selectedRule) + "\"];\n";
+        str += this->getParent()->dotStringUpwards();
+    }
+
+    return str;
+}

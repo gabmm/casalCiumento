@@ -164,4 +164,21 @@ string GTree::dotString(int limit) {
     return result;
 }
 
+string GTree::dotStringUpwards(GTNode* node){
+    string result = "digraph G {\n"
+                    "node [margin=0.1 width=0.5 shape=record style=rounded]\n"
+                    "edge[fontcolor=blue]\n";
+    result += node->dotStringUpwards();
+    result += "}";
+    return result;
+}
+
+GTNode *GTree::getGoalNode() const {
+    return goalNode;
+}
+
+void GTree::setGoalNode(GTNode *goalNode) {
+    GTree::goalNode = goalNode;
+}
+
 

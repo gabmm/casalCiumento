@@ -27,9 +27,15 @@ public:
     void getNode(Scenario scenario, GTNode* &p);
     void auxGetNode(GTNode* node, Scenario scenario, GTNode* &p);
     string dotString(int limit);
+    string dotStringUpwards(GTNode* node);
+
+    GTNode *getGoalNode() const;
+
+    void setGoalNode(GTNode *goalNode);
 
 private:
     GTNode* root; //ponteiro para a raíz
+    GTNode* goalNode; //ponteiro para o nó objetivo
     int stateCounter = 0; //contador de estados
     void auxPrint(GTNode* node, int& num_node); //funcao auxiliar a Print
     void auxSearch(Scenario sc, GTNode* node, int& flag); //funcao auxiliar a Search

@@ -41,7 +41,7 @@ void AIAlgorithm::backtrackingSearch(GTree &gtree, int &depth) {
               cout << "SOLUÇÃO ENCONTRADO COM PASSAGEM POR " << gtree.getTotalStates() << " estados diferentes." << endl;
           }*/
     }
-
+    gtree.setGoalNode(node);
     gtree.printPath(node, depth);
 
 }
@@ -83,6 +83,7 @@ void AIAlgorithm::irrevocableSearch(GTree& gtree){
         if (node->getState().isEveryoneSafe()) //alcancou estado objetivo
         {
             cout << endl << "PARABÉNS! Estão todos a salvo. Alcançado estado objetivo." << endl;
+            gtree.setGoalNode(node);
             break;
         }
     }
@@ -143,6 +144,7 @@ void AIAlgorithm::breadthFirstSearch(GTree& gtree, bool to_prune, int &depth){
         open.pop();         // remove o no visitado da fila de abertos
     }
 
+    gtree.setGoalNode(first);
     gtree.printPath(first, depth);
 }
 
@@ -201,6 +203,7 @@ void AIAlgorithm::depthFirstSearch(GTree& gtree, bool to_prune, int &depth){
         }
 
     }
+    gtree.setGoalNode(top);
     gtree.printPath(top, depth);
 }
 
@@ -257,7 +260,7 @@ void AIAlgorithm::manualSearch(GTree& gtree, int &depth){
 
     cout << endl << "Parabéns, estão todos a salvo!" << endl;
 
-
+    gtree.setGoalNode(node);
     gtree.printPath(node, depth);
 }
 
@@ -381,6 +384,7 @@ void AIAlgorithm::orderedSearch(GTree &gtree, bool to_prune, int &depth) {
         open.pop_front();         // remove o no visitado da fila de abertos
     }
 
+    gtree.setGoalNode(first);
     gtree.printPath(first, depth);
 }
 
@@ -460,6 +464,7 @@ void AIAlgorithm::greedySearch(GTree &gtree, bool to_prune, int &depth) {
             }
         }
     }
+    gtree.setGoalNode(first);
     gtree.printPath(first, depth);
 }
 
@@ -537,5 +542,6 @@ void AIAlgorithm::aStarSearch(GTree &gtree, bool to_prune, int &depth) {
             }
         }
     }
+    gtree.setGoalNode(first);
     gtree.printPath(first, depth);
 }
