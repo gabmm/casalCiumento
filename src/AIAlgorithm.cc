@@ -517,10 +517,27 @@ void AIAlgorithm::aStarSearch(GTree &gtree, bool to_prune, int &depth) {
             state.setState(first->getState());   // seta ele para que seja igual ao atual
             int rule = first->getQueue().front();       //copia a primeira regra da fila de regras possiveis
             state.applyRule(rule);
-
             if (to_prune) {
-                if (!gtree.Search(state)) {
-                    node = gtree.Insert(state, first, rule);
+                GTNode* oldNode = nullptr;
+                gtree.getNode(state, oldNode); // encontra um no na arvore com o mesmo estado (oldNode)
+                node = gtree.Insert(state, first, rule);
+                if (oldNode != nullptr){
+                    if (oldNode->getAStarWeight() <= node->getAStarWeight()){ // remove o novo caso o antigo seja melhor ou igual
+                        first->removeChild(node);
+                        cout << "Podou aqui!" << endl;
+                    }
+                    else { // caso o novo seja melhor
+                        for (int i = 0; i < open.size(); i++){ // remove o antigo da lista de abertos
+                            if (oldNode == open[i]) {
+                                open.erase(open.begin() + i);
+                                gtree.RemoveLeaf(oldNode);
+                                cout << "Podou aqui!" << endl;
+                            }
+                        }
+                        aStarInsert(open, node);
+                    }
+                }
+                else{
                     aStarInsert(open, node);
                 }
             }

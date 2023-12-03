@@ -17,7 +17,7 @@ GTNode::GTNode(Scenario state, GTNode* parent, int stateNumber, int ruleNumber) 
         this->weight = parent->getWeight() + state.getRuleCost(ruleNumber);
         this->aStarWeight += weight;
     }
-
+    
 }
 
 GTNode::~GTNode() {
@@ -115,6 +115,7 @@ int GTNode::getGreedyWeight() {
     return this->greedyWeight;
 }
 
+// AStarWeight = greedyWeight + parent.getWeight + custoDaRegra
 int GTNode::getAStarWeight() {
     return this->aStarWeight;
 }
