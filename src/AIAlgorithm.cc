@@ -22,7 +22,7 @@ void AIAlgorithm::backtrackingSearch(GTree &gtree, int &depth) {
             GTNode *p; //cria ponteiro
             p = node; //aponta para o estado atual
             node = p->getParent(); //ponteiro atual aponta para o pai do estado atual; Ou seja, novo estado atual é o pai
-            gtree.RemoveLeaf(p); //remove o estado antigo (filho) usando o ponteiro criado
+//            gtree.RemoveLeaf(p); //remove o estado antigo (filho) usando o ponteiro criado
         }
         else //há mais regras, portanto, aplica a próxima regra da fila
         {
