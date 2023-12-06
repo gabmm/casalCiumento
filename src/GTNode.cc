@@ -3,10 +3,12 @@
 #include <vector>
 #include <algorithm>
 
-GTNode::GTNode(Scenario state, GTNode* parent, int stateNumber, int ruleNumber) {
+int GTNode::NEXT_ID = 0;
+
+GTNode::GTNode(Scenario state, GTNode *parent, int ruleNumber) {
     this->state = state;
     this->parent = parent;
-    this->stateNumber = stateNumber;
+    this->stateNumber = NEXT_ID;
     this->selectedRule = ruleNumber;
     this->weight = 0;
     this->greedyWeight = 0;
@@ -17,7 +19,7 @@ GTNode::GTNode(Scenario state, GTNode* parent, int stateNumber, int ruleNumber) 
         this->weight = parent->getWeight() + state.getRuleCost(ruleNumber);
         this->aStarWeight += weight;
     }
-    
+    NEXT_ID++;
 }
 
 GTNode::~GTNode() {
@@ -120,7 +122,8 @@ int GTNode::getAStarWeight() {
     return this->aStarWeight;
 }
 
-string GTNode::dotString(int current, int limit, bool ruleWeight, bool greedyWeight) {
+
+string GTNode::dotString(bool ruleWeight, bool greedyWeight) {
     string str = std::to_string(this->stateNumber);
     string edgeLabel = "";
     string xLabel = "";
@@ -133,38 +136,40 @@ string GTNode::dotString(int current, int limit, bool ruleWeight, bool greedyWei
     }
 
     if(greedyWeight){
-        xLabel = to_string(this->greedyWeight);
+        xLabel ="xlabel=<<font color=\"green\">"+ to_string(this->greedyWeight)+"</font>>";
     }else{
         xLabel = "";
     }
 
-    str+= "[label=\"" + this->state.toString()+"\"" + " xlabel=\""+xLabel+ "\"];\n";
+    str+= "[label=\"" + this->state.toString()+"\" "+xLabel+ "];\n";
 
     if(this->getParent() != nullptr){
         str += std::to_string(this->getParent()->stateNumber) + " -> " + std::to_string(this->stateNumber);
         str += "[label=\"" + edgeLabel + "\"];\n";
     }
 
+    return str;
+}
+
+string GTNode::dotStringTopDown(int current, int limit, bool ruleWeight, bool greedyWeight) {
+    string str = this->dotString(ruleWeight, greedyWeight);
 
     if(current < limit){
         for(int i = 0; i < this->children.size(); i++){
-           // str += std::to_string(this->stateNumber) + " -> " + std::to_string(this->children[i]->stateNumber);
-           // str += "[label=\"" + std::to_string(this->children[i]->selectedRule) + "\"];\n";
-            str += this->children[i]->dotString(current +1, limit, ruleWeight, greedyWeight);
+            str += this->children[i]->dotStringTopDown(current +1, limit, ruleWeight, greedyWeight);
         }
     }
 
     return str;
 }
 
-string GTNode::dotStringUpwards(bool ruleWeight, bool greedyWeight) {
-    string str = std::to_string(this->stateNumber);
-    str+= "[label=\"" + this->state.toString() + "\"];\n";
+string GTNode::dotStringBottomUp(bool ruleWeight, bool greedyWeight) {
+    string str = this->dotString(ruleWeight, greedyWeight);
 
     if(this->getParent() != nullptr){
-        str += std::to_string(this->getParent()->stateNumber) + " -> " + std::to_string(this->stateNumber);
-        str += "[label=\"" + std::to_string(this->selectedRule) + "\"];\n";
-        str += this->getParent()->dotStringUpwards(ruleWeight, greedyWeight);
+        //str += std::to_string(this->getParent()->stateNumber) + " -> " + std::to_string(this->stateNumber);
+        //str += "[label=\"" + std::to_string(this->selectedRule) + "\"];\n";
+        str += this->getParent()->dotStringBottomUp(ruleWeight, greedyWeight);
     }
 
     return str;

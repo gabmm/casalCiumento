@@ -11,7 +11,7 @@
 
 class GTNode{
 public:
-    GTNode(Scenario state, GTNode* parent, int stateNumber, int ruleNumber); //construtor
+    GTNode(Scenario state, GTNode *parent, int ruleNumber); //construtor
     ~GTNode(); //destrutor
     Scenario getState(); //retorna o SCENARIO (key)
     GTNode* getParent(); //retorna o ponteiro para o pai
@@ -28,8 +28,9 @@ public:
     void setWeight(int weight);
     int getGreedyWeight();
     int getAStarWeight();
-    string dotString(int current, int limit, bool ruleWeight, bool greedyWeight);
-    string dotStringUpwards(bool ruleWeight, bool greedyWeight);
+    string dotStringTopDown(int current, int limit, bool ruleWeight, bool greedyWeight);
+    string dotString(bool ruleWeight, bool greedyWeight);
+    string dotStringBottomUp(bool ruleWeight, bool greedyWeight);
 
 protected:
     Scenario state; //key
@@ -41,6 +42,7 @@ protected:
     int weight;
     int greedyWeight;
     int aStarWeight;
+    static int NEXT_ID;
 };
 
 #endif //CASALCIUMENTO_GTNODE_H

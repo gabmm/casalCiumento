@@ -20,10 +20,11 @@ GTree::~GTree() {
 }
 
 GTNode* GTree::Insert(Scenario scenario, GTNode* parent, int selectedRule) {
-    this->stateCounter++;
-    GTNode* node = new GTNode(scenario, parent, this->stateCounter, selectedRule);
+
+    GTNode* node = new GTNode(scenario, parent, selectedRule);
     if (parent != nullptr)
         parent->makeChild(node);
+    this->stateCounter++;
     this->updateQueue(node);
     return node;
 }
@@ -133,7 +134,7 @@ void GTree::updateQueue(GTNode* node) {
 
 GTree::GTree() {
     Scenario scenario;
-    GTNode* node = new GTNode(scenario, nullptr, this->stateCounter, 0);
+    GTNode* node = new GTNode(scenario, nullptr, 0);
     this->stateCounter++;
     this->root = node;
 }
@@ -155,20 +156,20 @@ void GTree::printPath(GTNode* node, int &depth) {
     }
 }
 
-string GTree::dotString(int limit, bool ruleWeight, bool greedyWeight) {
+string GTree::dotStringTopDown(int limit, bool ruleWeight, bool greedyWeight) {
     string result = "digraph G {\n"
                     "node [margin=0.1 width=0.5 shape=record style=rounded]\n"
                     "edge[fontcolor=blue]\n";
-    result += this->root->dotString(0, limit, ruleWeight, greedyWeight);
+    result += this->root->dotStringTopDown(0, limit, ruleWeight, greedyWeight);
     result += "}";
     return result;
 }
 
-string GTree::dotStringUpwards(GTNode* node, bool ruleWeight, bool greedyWeight){
+string GTree::dotStringBottomUp(GTNode* node, bool ruleWeight, bool greedyWeight){
     string result = "digraph G {\n"
                     "node [margin=0.1 width=0.5 shape=record style=rounded]\n"
                     "edge[fontcolor=blue]\n";
-    result += node->dotStringUpwards(ruleWeight, greedyWeight);
+    result += node->dotStringBottomUp(ruleWeight, greedyWeight);
     result += "}";
     return result;
 }

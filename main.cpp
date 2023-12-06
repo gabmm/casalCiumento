@@ -31,9 +31,9 @@ ofstream createOutputFile(string outputPath, bool append = false){
 void outputDotFile(string outputPath, GTree& gtree, bool ruleWeight, bool greedyWeight, bool onlySolutionPath){
     ofstream f_out = createOutputFile(outputPath, false);
     if(onlySolutionPath){
-        f_out <<  gtree.dotStringUpwards(gtree.getGoalNode(), ruleWeight, greedyWeight);
+        f_out << gtree.dotStringBottomUp(gtree.getGoalNode(), ruleWeight, greedyWeight);
     }else{
-        f_out << gtree.dotString(std::numeric_limits<int>::max(), ruleWeight, greedyWeight);
+        f_out << gtree.dotStringTopDown(std::numeric_limits<int>::max(), ruleWeight, greedyWeight);
     }
 
     f_out.close();
