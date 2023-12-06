@@ -1,0 +1,27 @@
+digraph G {
+node [margin=0.1 width=0.5 shape=record style=rounded]
+edge[fontcolor=blue]
+1183[label=" 1 | 1 | 1 | 1 | 1 | 1 | 1 " xlabel=<<font color="green">0</font>>];
+726 -> 1183[label="4"];
+726[label=" 1 | 0 | 1 | 1 | 1 | 0 | 0 " xlabel=<<font color="green">4</font>>];
+721 -> 726[label="1"];
+721[label=" 1 | 1 | 1 | 1 | 1 | 0 | 1 " xlabel=<<font color="green">1</font>>];
+434 -> 721[label="3"];
+434[label=" 1 | 0 | 1 | 0 | 1 | 0 | 0 " xlabel=<<font color="green">6</font>>];
+351 -> 434[label="2"];
+351[label=" 1 | 0 | 1 | 1 | 1 | 0 | 1 " xlabel=<<font color="green">4</font>>];
+92 -> 351[label="4"];
+92[label=" 0 | 0 | 1 | 1 | 0 | 0 | 0 " xlabel=<<font color="green">8</font>>];
+91 -> 92[label="2"];
+91[label=" 1 | 1 | 1 | 1 | 0 | 0 | 1 " xlabel=<<font color="green">2</font>>];
+32 -> 91[label="3"];
+32[label=" 0 | 1 | 0 | 1 | 0 | 0 | 0 " xlabel=<<font color="green">7</font>>];
+16 -> 32[label="3"];
+16[label=" 0 | 1 | 0 | 1 | 0 | 1 | 1 " xlabel=<<font color="green">6</font>>];
+10 -> 16[label="5"];
+10[label=" 0 | 1 | 0 | 0 | 0 | 0 | 0 " xlabel=<<font color="green">9</font>>];
+7 -> 10[label="1"];
+7[label=" 1 | 1 | 0 | 0 | 0 | 0 | 1 " xlabel=<<font color="green">6</font>>];
+0 -> 7[label="2"];
+0[label=" 0 | 0 | 0 | 0 | 0 | 0 | 0 " xlabel=<<font color="green">12</font>>];
+}
