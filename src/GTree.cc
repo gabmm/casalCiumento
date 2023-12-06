@@ -155,20 +155,20 @@ void GTree::printPath(GTNode* node, int &depth) {
     }
 }
 
-string GTree::dotString(int limit) {
+string GTree::dotString(int limit, bool ruleWeight, bool greedyWeight) {
     string result = "digraph G {\n"
                     "node [margin=0.1 width=0.5 shape=record style=rounded]\n"
                     "edge[fontcolor=blue]\n";
-    result += this->root->dotString(0, limit);
+    result += this->root->dotString(0, limit, ruleWeight, greedyWeight);
     result += "}";
     return result;
 }
 
-string GTree::dotStringUpwards(GTNode* node){
+string GTree::dotStringUpwards(GTNode* node, bool ruleWeight, bool greedyWeight){
     string result = "digraph G {\n"
                     "node [margin=0.1 width=0.5 shape=record style=rounded]\n"
                     "edge[fontcolor=blue]\n";
-    result += node->dotStringUpwards();
+    result += node->dotStringUpwards(ruleWeight, greedyWeight);
     result += "}";
     return result;
 }

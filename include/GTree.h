@@ -26,8 +26,8 @@ public:
     void printPath(GTNode* node, int &depth); //imprime o caminho solucao
     void getNode(Scenario scenario, GTNode* &p);
     void auxGetNode(GTNode* node, Scenario scenario, GTNode* &p);
-    string dotString(int limit);
-    string dotStringUpwards(GTNode* node);
+    string dotString(int limit, bool ruleWeight, bool greedyWeight);
+    string dotStringUpwards(GTNode* node, bool ruleWeight, bool greedyWeight);
 
     GTNode *getGoalNode() const;
 

@@ -13,15 +13,31 @@
 
 using namespace std;
 
-ofstream createOutputFile(string outputPath){
+ofstream createOutputFile(string outputPath, bool append = false){
     ofstream f_out;
-    f_out.open(outputPath, ios::app); // ir alterando o nome do arquivo para não se confundir
+
+    if(append)
+        f_out.open(outputPath, ios::app); // ir alterando o nome do arquivo para não se confundir
+    else
+        f_out.open(outputPath); // ir alterando o nome do arquivo para não se confundir
 
     if (!f_out.good())
         throw "Erro ao abrir arquivo";
     else cout << "Arquivo criado!";
 
     return f_out;
+}
+
+void outputDotFile(string outputPath, GTree& gtree, bool ruleWeight, bool greedyWeight, bool onlySolutionPath){
+    ofstream f_out = createOutputFile(outputPath, false);
+    if(onlySolutionPath){
+        f_out <<  gtree.dotStringUpwards(gtree.getGoalNode(), ruleWeight, greedyWeight);
+    }else{
+        f_out << gtree.dotString(std::numeric_limits<int>::max(), ruleWeight, greedyWeight);
+    }
+
+    f_out.close();
+
 }
 
 string runAlgorithm(int algorithm, bool to_prune, vector<int> rules){
@@ -36,34 +52,55 @@ string runAlgorithm(int algorithm, bool to_prune, vector<int> rules){
     if(algorithm==-1) {
         algName = "Busca Manual";
         AIAlgorithm::manualSearch(gtree, depth);
+        outputDotFile("manual.dot", gtree, false, false, false);
     }
     if(algorithm==0) {
         algName = "Busca Irrevogável";
         AIAlgorithm::irrevocableSearch(gtree);
+        outputDotFile("irrevocable.dot", gtree, false, false, false);
+
     }
     else if(algorithm==1) {
         algName = "Busca Backtracking";
         AIAlgorithm::backtrackingSearch(gtree, depth);
+        outputDotFile("backtracking.dot", gtree, false, false, false);
+        outputDotFile("backtracking_sol.dot", gtree, false, false, true);
+
     }
     else if(algorithm==2) {
         algName = "Busca em Largura";
         AIAlgorithm::breadthFirstSearch(gtree, to_prune, depth);
+        outputDotFile("bfs_prune_"+ to_string(to_prune)+".dot", gtree, false, false, false);
+        outputDotFile("bfs_prune_"+ to_string(to_prune)+"_sol.dot", gtree, false, false, true);
+
     }
     else if(algorithm==3) {
         algName = "Busca em Profundidade";
         AIAlgorithm::depthFirstSearch(gtree, to_prune, depth);
+        outputDotFile("dfs_prune_"+ to_string(to_prune)+".dot", gtree, false, false, false);
+        outputDotFile("dfs_prune_"+ to_string(to_prune)+"_sol.dot", gtree, false, false, true);
+
     }
     else if(algorithm==4) {
         algName = "Busca Ordenada";
         AIAlgorithm::orderedSearch(gtree, to_prune, depth);
+        outputDotFile("ordered_prune_"+ to_string(to_prune)+".dot", gtree, true, false, false);
+        outputDotFile("ordered_prune_"+ to_string(to_prune)+"_sol.dot", gtree, true, false, true);
+
     }
     else if(algorithm==5) {
         algName = "Busca Gulosa";
         AIAlgorithm::greedySearch(gtree, to_prune, depth);
+        outputDotFile("greedy_prune_"+ to_string(to_prune)+".dot", gtree, true, false, false);
+        outputDotFile("greedy_prune_"+ to_string(to_prune)+"_sol.dot", gtree, true, false, true);
     }
     else if(algorithm==6) {
         algName = "Busca A*";
         AIAlgorithm::aStarSearch(gtree, to_prune, depth);
+        outputDotFile("astar_prune_"+ to_string(to_prune)+".dot", gtree, true, true, false);
+        outputDotFile("astar_prune_"+ to_string(to_prune)+"_sol.dot", gtree, true, true, true);
+
+
     }
 
     int totalStates = gtree.getTotalStates();
@@ -80,20 +117,20 @@ string runAlgorithm(int algorithm, bool to_prune, vector<int> rules){
         << to_string(p.time) << "\n";
 
 
-    ofstream f_out = createOutputFile("output.dot");
+    /*ofstream f_out = createOutputFile("output.dot");
     f_out << gtree.dotString(std::numeric_limits<int>::max());
     f_out.close();
 
     ofstream f_out2 = createOutputFile("solution.dot");
     f_out2 << gtree.dotStringUpwards(gtree.getGoalNode());
-    f_out2.close();
+    f_out2.close();*/
 
     return str.str();
 
 }
 
 int runPerformanceTest(int algorithm, bool to_prune, vector<int> rules, string outputPath) {
-    ofstream f_out = createOutputFile(outputPath);
+    ofstream f_out = createOutputFile(outputPath, true);
     stringstream str;
     int i_aux = 0;
 

@@ -120,30 +120,51 @@ int GTNode::getAStarWeight() {
     return this->aStarWeight;
 }
 
-string GTNode::dotString(int current, int limit) {
+string GTNode::dotString(int current, int limit, bool ruleWeight, bool greedyWeight) {
     string str = std::to_string(this->stateNumber);
-    str+= "[label=\"" + this->state.toString() + "\"];\n";
+    string edgeLabel = "";
+    string xLabel = "";
+
+    if(ruleWeight){
+        edgeLabel = to_string(this->state.getRuleCost(this->selectedRule));
+    }
+    else{
+        edgeLabel = "R"+ to_string(this->selectedRule);
+    }
+
+    if(greedyWeight){
+        xLabel = to_string(this->greedyWeight);
+    }else{
+        xLabel = "";
+    }
+
+    str+= "[label=\"" + this->state.toString()+"\"" + " xlabel=\""+xLabel+ "\"];\n";
+
+    if(this->getParent() != nullptr){
+        str += std::to_string(this->getParent()->stateNumber) + " -> " + std::to_string(this->stateNumber);
+        str += "[label=\"" + edgeLabel + "\"];\n";
+    }
 
 
     if(current < limit){
         for(int i = 0; i < this->children.size(); i++){
-            str += std::to_string(this->stateNumber) + " -> " + std::to_string(this->children[i]->stateNumber);
-            str += "[label=\"" + std::to_string(this->children[i]->selectedRule) + "\"];\n";
-            str += this->children[i]->dotString(current +1, limit);
+           // str += std::to_string(this->stateNumber) + " -> " + std::to_string(this->children[i]->stateNumber);
+           // str += "[label=\"" + std::to_string(this->children[i]->selectedRule) + "\"];\n";
+            str += this->children[i]->dotString(current +1, limit, ruleWeight, greedyWeight);
         }
     }
 
     return str;
 }
 
-string GTNode::dotStringUpwards() {
+string GTNode::dotStringUpwards(bool ruleWeight, bool greedyWeight) {
     string str = std::to_string(this->stateNumber);
     str+= "[label=\"" + this->state.toString() + "\"];\n";
 
     if(this->getParent() != nullptr){
         str += std::to_string(this->getParent()->stateNumber) + " -> " + std::to_string(this->stateNumber);
         str += "[label=\"" + std::to_string(this->selectedRule) + "\"];\n";
-        str += this->getParent()->dotStringUpwards();
+        str += this->getParent()->dotStringUpwards(ruleWeight, greedyWeight);
     }
 
     return str;

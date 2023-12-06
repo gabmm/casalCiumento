@@ -28,8 +28,8 @@ public:
     void setWeight(int weight);
     int getGreedyWeight();
     int getAStarWeight();
-    string dotString(int current, int limit);
-    string dotStringUpwards();
+    string dotString(int current, int limit, bool ruleWeight, bool greedyWeight);
+    string dotStringUpwards(bool ruleWeight, bool greedyWeight);
 
 protected:
     Scenario state; //key
